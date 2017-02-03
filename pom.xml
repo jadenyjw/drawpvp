@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <groupId>org.deeplearning4j</groupId>
-    <artifactId>deeplearning4j-examples-parent</artifactId>
-    <version>0.7-SNAPSHOT</version>
+    <groupId>org.drawpvp</groupId>
+    <artifactId>drawpvp</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 
-    <name>DeepLearning4j Examples Parent</name>
-    <description>Examples of training different data sets</description>
+    <name>DrawPVP</name>
+    <description>Competitive drawing game.</description>
     <properties>
         <!-- Change the nd4j.backend property to nd4j-cuda-7.5-platform or nd4j-cuda-8.0-platform to use CUDA GPUs -->
         <nd4j.backend>nd4j-native-platform</nd4j.backend>
@@ -29,15 +29,7 @@
         <maven.minimum.version>3.3.1</maven.minimum.version>
     </properties>
 
-    <modules>
-        <module>dl4j-examples</module>
-        <module>dl4j-spark-examples</module>
-        <module>datavec-examples</module>
-        <module>dl4j-cuda-specific-examples</module>
-        <module>nd4j-examples</module>
-        <module>rl4j-examples</module>
-        <module>arbiter-examples</module>
-    </modules>
+ 
     
     <dependencyManagement>
         <dependencies>
