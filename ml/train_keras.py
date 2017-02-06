@@ -1,12 +1,15 @@
 from __future__ import print_function
 import numpy as np
 
-
-from keras.datasets import mnist
+import matplotlib
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+from matplotlib import pyplot as plt
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.layers import Convolution2D, MaxPooling2D, ZeroPadding2D
 from keras.utils import np_utils
+from keras.utils.io_utils import HDF5Matrix
 from keras import backend as K
 
 batch_size = 135
@@ -15,15 +18,18 @@ nb_epoch = 100
 
 # input image dimensions
 img_rows, img_cols = 225, 225
-# number of convolutional filters to use
-nb_filters = 32
-# size of pooling area for max pooling
-pool_size = (2, 2)
-# convolution kernel size
-kernel_size = (3, 3)
 
+X_train = np.asarray(HDF5Matrix('training.h5', 'X'))
+Y_train = np.asarray(HDF5Matrix('training.h5', 'Y'))
+
+X_test = np.asarray(HDF5Matrix('test.h5', 'X'))
+Y_test = np.asarray(HDF5Matrix('test.h5', 'Y'))
+
+
+
+# number of convolutional filters to use
 # the data, shuffled and split between train and test sets
-(X_train, y_train), (X_test, y_test) = mnist.load_data()
+#(X_train, y_train), (X_test, y_test) = mnist.load_data()
 
 if K.image_dim_ordering() == 'th':
     X_train = X_train.reshape(X_train.shape[0], 1, img_rows, img_cols)
@@ -43,14 +49,15 @@ print(X_train.shape[0], 'train samples')
 print(X_test.shape[0], 'test samples')
 
 # convert class vectors to binary class matrices
-Y_train = np_utils.to_categorical(y_train, nb_classes)
-Y_test = np_utils.to_categorical(y_test, nb_classes)
+
+#Y_train = np_utils.to_categorical(y_train, nb_classes)
+#Y_test = np_utils.to_categorical(y_test, nb_classes)
 
 model = Sequential()
 
 model.add(Convolution2D(64, 15, 15,
                         border_mode='valid',
-                        input_shape=input_shape,
+                        input_shape=[225, 225, 1],
                         activation='relu',
                         subsample=(3,3)))
 model.add(ZeroPadding2D(padding=(0,0), dim_ordering='default'))
@@ -76,7 +83,7 @@ model.add(Convolution2D(256, 3, 3,
                         subsample=(1,1)))
 model.add(ZeroPadding2D(padding=(1,1), dim_ordering='default'))
 
-#model.add(Flatten())
+model.add(Flatten())
 model.add(Dense(512, ))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
@@ -96,5 +103,7 @@ model.compile(loss='categorical_crossentropy',
 model.fit(X_train, Y_train, batch_size=batch_size, nb_epoch=nb_epoch,
           verbose=1, validation_data=(X_test, Y_test))
 score = model.evaluate(X_test, Y_test, verbose=0)
+model.save('my_model.h5')
+
 print('Test score:', score[0])
 print('Test accuracy:', score[1])
