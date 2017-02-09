@@ -5,7 +5,7 @@
     <artifactId>drawpvp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
+  
 
     <name>DrawPVP</name>
     <description>Competitive drawing game.</description>
@@ -27,6 +27,7 @@
         <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
         <exec-maven-plugin.version>1.4.0</exec-maven-plugin.version>
         <maven.minimum.version>3.3.1</maven.minimum.version>
+        <exec.mainClass>ai.NeuralNet</exec.mainClass>
     </properties>
 
  
@@ -48,6 +49,7 @@
                 <artifactId>nd4j-cuda-8.0-platform</artifactId>
                 <version>${nd4j.version}</version>
             </dependency>
+            
        </dependencies>
     </dependencyManagement>
 
@@ -57,7 +59,7 @@
             <groupId>org.nd4j</groupId>
             <artifactId>${nd4j.backend}</artifactId>
         </dependency>
-
+		
         <!-- Core DL4J functionality -->
         <dependency>
             <groupId>org.deeplearning4j</groupId>
@@ -82,7 +84,11 @@
             <artifactId>jcommon</artifactId>
             <version>${jcommon.version}</version>
         </dependency>
-
+		<dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-modelimport</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
        
     </dependencies>
 
