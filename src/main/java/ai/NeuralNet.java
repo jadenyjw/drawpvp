@@ -8,7 +8,7 @@ import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationExce
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 
 public class NeuralNet {
-	public static void main (String[] args) throws IOException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException{
-		MultiLayerNetwork network = KerasModelImport.importKerasSequentialModelAndWeights("ml/checkpoint.hdf5");
-	}
+	public NeuralNet() throws IOException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException{
+		MultiLayerNetwork network = KerasModelImport.importKerasSequentialModelAndWeights("ml/drawpvp.h5");
+	}	
 }
