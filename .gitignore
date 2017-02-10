@@ -3,3 +3,5 @@ ml/dataset.h5
 ml/training.h5
 ml/test.h5
 ml/checkpoint.hdf5
+ml/augmented/*
+ml/notnormalized/*
