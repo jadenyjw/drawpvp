@@ -3,10 +3,8 @@ package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import java.awt.CardLayout;
-import javax.swing.JButton;
 
-public class MainMenu {
+public class Lobby {
 
 	private JFrame frame;
 
@@ -17,7 +15,7 @@ public class MainMenu {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainMenu window = new MainMenu();
+					Lobby window = new Lobby();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +27,7 @@ public class MainMenu {
 	/**
 	 * Create the application.
 	 */
-	public MainMenu() {
+	public Lobby() {
 		initialize();
 	}
 
@@ -38,7 +36,7 @@ public class MainMenu {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 640, 640);
+		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
