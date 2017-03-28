@@ -10,6 +10,12 @@ public class DataManipulation {
 		image = image.sub(mean).div(std);
 		return image;
 	}
+
+	public static idToString(int n){
+    	return "";
+	}
+
+
 	
 	
 }
