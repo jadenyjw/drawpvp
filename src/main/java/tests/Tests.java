@@ -2,6 +2,10 @@ package tests;
 
 import networking.*;
 import ai.*;
+import utilities.*;
+import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.factory.Nd4j;
+
 import java.net.InetAddress;
 
 public class Tests {
@@ -11,10 +15,6 @@ public class Tests {
         //testClient();
         testNeuralNet();
     }
-
-
-
-
 
     private static void testServer(){
         try {
@@ -36,7 +36,11 @@ public class Tests {
 
     private static void testNeuralNet(){
         try {
+            INDArray tens = Nd4j.zeros(1, 1, 225, 225).addi(10);
             NeuralNet net = new NeuralNet();
+            int[] results = net.getGraph().predict(DataManipulation.dataPreprocess(tens));
+
+            System.out.println(results[0] + " " + DataManipulation.idToString(results[0]));
         }
         catch (Exception e){
             System.out.println(e);

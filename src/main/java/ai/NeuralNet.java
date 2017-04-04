@@ -13,5 +13,9 @@ public class NeuralNet{
 
 	public NeuralNet() throws IOException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException{
 		graph = KerasModelImport.importKerasSequentialModelAndWeights("ml/drawpvp.h5");
-	}	
+	}
+
+	public MultiLayerNetwork getGraph(){
+		return graph;
+	}
 }
