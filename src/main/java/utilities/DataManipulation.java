@@ -11,7 +11,7 @@ public class DataManipulation {
 		return image;
 	}
 
-	public static idToString(int n){
+	public static String idToString(int n){
     	return "";
 	}
 
