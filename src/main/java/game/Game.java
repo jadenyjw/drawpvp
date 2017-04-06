@@ -1,9 +1,5 @@
 package game;
-import ai.*;
-import org.deeplearning4j.nn.modelimport.keras.InvalidKerasConfigurationException;
-import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationException;
 
-import java.io.IOException;
 import java.util.*;
 
 public class Game {
@@ -11,11 +7,6 @@ public class Game {
     protected Player currentPlayer;
     protected ArrayList<Player> players = new ArrayList<Player>();
     protected boolean gameStarted = false; //False means still in lobby.
-
-    public Game() throws UnsupportedKerasConfigurationException, IOException, InvalidKerasConfigurationException {
-        NeuralNet net = new NeuralNet();
-    }
-
     
     public boolean hasWinner()
     {
@@ -30,7 +21,7 @@ public class Game {
         //Do other stuff.
     }
 
-    public boolean playerJoin(Player player){
+    private boolean playerJoin(Player player){
         if(!gameStarted){
             players.add(player);
             return true;
@@ -39,7 +30,7 @@ public class Game {
             return false;
         }
     }
-    public void playerLeave(Player player){
+    private void playerLeave(Player player){
         players.remove(player);
     }
 
