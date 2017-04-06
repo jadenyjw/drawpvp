@@ -36,7 +36,7 @@ public class Tests {
 
     private static void testNeuralNet(){
         try {
-            INDArray tens = Nd4j.zeros(1, 1, 225, 225).addi(10);
+            INDArray tens = Nd4j.zeros(1, 1, 225, 225).addi(255);
             NeuralNet net = new NeuralNet();
             int[] results = net.getGraph().predict(DataManipulation.dataPreprocess(tens));
 

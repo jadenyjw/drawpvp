@@ -1,22 +1,17 @@
 package networking;
 //Look at this link: http://cs.lmu.edu/~ray/notes/javanetexamples/
 
-import java.io.*;
+import game.*;
 import java.net.*;
+import java.io.*;
 
 
 public class Server{
-    final private int port = 42069;
+    private static final int port = 42069;
 
     public Server() throws Exception{
-        try
-        {
-            ServerSocket serverSocket = new ServerSocket(port);
-            System.out.println("Server successfully started.");
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
+
+        Game game = new Game();
 
     }
 
