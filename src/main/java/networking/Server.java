@@ -5,6 +5,8 @@ import game.*;
 import java.awt.image.BufferedImage;
 import java.net.*;
 import java.io.*;
+import java.util.ArrayList;
+
 import ai.*;
 import org.datavec.image.loader.*;
 
@@ -27,7 +29,33 @@ public class Server{
         if(game.isCorrectDrawing(player, prediction[0])){
 
         }
+    }
 
+    public int requestNextDrawing(Player player) {
+
+        if (player.getDrawingNum() < Game.getNumDrawings() - 1){
+            return game.getDrawings().get(player.nextDrawing());
+        }
+        else{
+
+            return -1; //This means that they are done.
+        }
+    }
+
+    public ArrayList<Player> requestPlayers(){
+        return game.getPlayers();
+    }
+
+    public void addPlayerToGame(Player player){
+        if (game.playerJoin(player)){
+            System.out.println("Game joined successfully!");
+        }
+        else{
+            System.out.println("The game you are trying to join has already started.");
+        }
+    }
+    public void removePlayerFromGame(Player player){
+        game.playerLeave(player);
     }
 
    

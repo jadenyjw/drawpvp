@@ -26,8 +26,8 @@ public class Player implements Runnable{
         this.score += n;
     }
 
-    public void nextDrawing(){
-        this.drawingNum++;
+    public int nextDrawing(){
+        return ++this.drawingNum;
     }
     public int getDrawingNum(){
         return drawingNum;
