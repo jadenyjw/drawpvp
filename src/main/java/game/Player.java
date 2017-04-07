@@ -7,7 +7,7 @@ public class Player implements Runnable{
 
     protected String username;
     protected int score = 0;
-    protected int drawingNum = 1;
+    protected int drawingNum = 0;
     protected Socket socket;
     protected BufferedReader input;
     protected PrintWriter output;
@@ -20,12 +20,17 @@ public class Player implements Runnable{
 
 
 
+
+
     public void addPoints(int n){
         this.score += n;
     }
 
     public void nextDrawing(){
         this.drawingNum++;
+    }
+    public int getDrawingNum(){
+        return drawingNum;
     }
 
 

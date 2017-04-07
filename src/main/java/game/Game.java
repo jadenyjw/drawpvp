@@ -6,22 +6,42 @@ public class Game {
 
     protected Player currentPlayer;
     protected ArrayList<Player> players = new ArrayList<Player>();
+    protected ArrayList<Integer> drawings = new ArrayList<Integer>();
     protected boolean gameStarted = false; //False means still in lobby.
-    
-    public boolean hasWinner()
-    {
-        return true;
+    protected boolean hasWinner = false;
+    protected final int numDrawings = 5;
+
+    public Game(){
+        Random rand = new Random();
+        for(int x = 0; x < numDrawings; x++){
+            drawings.add(rand.nextInt(250));
+        }
     }
 
-    public ArrayList<Player> getPlayers(){
-        return this.players;
+    public ArrayList<Integer> getDrawings(){
+        return drawings;
     }
+    public boolean hasWinner()
+    {
+        return hasWinner;
+    }
+
     public void gameStart(){
         this.gameStarted = true;
         //Do other stuff.
     }
 
-    private boolean playerJoin(Player player){
+    public ArrayList<Player> getPlayers(){
+        return this.players;
+    }
+
+    public boolean isCorrectDrawing(Player player, int n){
+        return (n == drawings.get(player.getDrawingNum()));
+    }
+
+
+
+    public boolean playerJoin(Player player){
         if(!gameStarted){
             players.add(player);
             return true;
@@ -30,8 +50,10 @@ public class Game {
             return false;
         }
     }
-    private void playerLeave(Player player){
+    public void playerLeave(Player player){
         players.remove(player);
     }
+
+
 
 }
