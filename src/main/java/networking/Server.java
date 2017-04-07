@@ -37,7 +37,7 @@ public class Server{
             return game.getDrawings().get(player.nextDrawing());
         }
         else{
-
+            game.playerFinished(player);
             return -1; //This means that they are done.
         }
     }

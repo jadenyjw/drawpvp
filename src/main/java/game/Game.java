@@ -9,7 +9,7 @@ public class Game {
     protected ArrayList<Player> finishedPlayers = new ArrayList<Player>();
     protected ArrayList<Integer> drawings = new ArrayList<Integer>();
     protected boolean gameStarted = false; //False means still in lobby.
-    protected boolean hasWinner = false;
+    protected boolean gameEnded = false;
     protected static final int numDrawings = 5;
 
     public Game(){
@@ -22,24 +22,28 @@ public class Game {
     public ArrayList<Integer> getDrawings(){
         return drawings;
     }
-    public boolean hasWinner()
+
+    //Checks if all players are finished their drawings.
+    public boolean gameEnded()
     {
-        return hasWinner;
+        return(players.size() == finishedPlayers.size());
     }
 
+    //Exit the lobby and deny incoming joiners.
     public void gameStart(){
         this.gameStarted = true;
         //Do other stuff.
     }
-
+    //Get a list of current players.
     public ArrayList<Player> getPlayers(){
         return this.players;
     }
-
+    //Checks if drawing is correct.
     public boolean isCorrectDrawing(Player player, int n){
         return (n == drawings.get(player.getDrawingNum()));
     }
 
+    //Joins the player to the game if it hasn't started yet.
     public boolean playerJoin(Player player){
         if(!gameStarted){
             players.add(player);
@@ -50,15 +54,18 @@ public class Game {
         }
     }
 
+    //The player has finished all their drawings.
     public void playerFinished(Player player){
         finishedPlayers.add(player);
     }
 
+    //The player has left the game.
     public void playerLeave(Player player){
         players.remove(player);
         finishedPlayers.remove(player);
     }
 
+    //Get the maximum number of drawings.
     public static int getNumDrawings(){
         return numDrawings;
     }
