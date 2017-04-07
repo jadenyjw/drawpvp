@@ -2,13 +2,11 @@ package networking;
 //Look at this link: http://cs.lmu.edu/~ray/notes/javanetexamples/
 
 import game.*;
-import org.datavec.image.*;
-
 import java.awt.image.BufferedImage;
 import java.net.*;
 import java.io.*;
 import ai.*;
-import org.datavec.image.loader.ImageLoader;
+import org.datavec.image.loader.*;
 
 
 public class Server{
