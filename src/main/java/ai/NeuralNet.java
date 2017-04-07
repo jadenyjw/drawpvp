@@ -11,6 +11,7 @@ public class NeuralNet{
 
 	protected MultiLayerNetwork graph;
 
+	//Constructs this object with a graph.
 	public NeuralNet() throws IOException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException{
 		graph = KerasModelImport.importKerasSequentialModelAndWeights("ml/drawpvp.h5");
 	}

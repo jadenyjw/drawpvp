@@ -8,13 +8,14 @@ import java.io.BufferedReader;
 
 public class DataManipulation {
 
+	//This method normalizes the matrix with the formula: (x - mu)/sigma
 	public static INDArray dataPreprocess(INDArray image){
 		Number mean = image.meanNumber();
 		Number std = image.stdNumber();
 		image = image.sub(mean).div(std);
 		return image;
 	}
-
+	//This method returns the String representation of the ID.
 	public static String idToString(int n) throws IOException{
 		FileReader fr = new FileReader("src/main/resources/text/dictionary.txt");
 		BufferedReader br = new BufferedReader(fr);

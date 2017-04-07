@@ -23,7 +23,7 @@ public class Server{
         loader = new ImageLoader();
     }
 
-    public void correctPlayerDrawing(BufferedImage image, Player player){
+    public void processPlayerDrawing(BufferedImage image, Player player){
 
         int[] prediction = network.getGraph().predict(loader.asMatrix(image));
         if(game.isCorrectDrawing(player, prediction[0])){
