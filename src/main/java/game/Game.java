@@ -34,6 +34,7 @@ public class Game {
         this.gameStarted = true;
         //Do other stuff.
     }
+
     //Get a list of current players.
     public ArrayList<Player> getPlayers(){
         return this.players;
