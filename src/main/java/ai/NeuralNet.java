@@ -7,6 +7,8 @@ import org.deeplearning4j.nn.modelimport.keras.InvalidKerasConfigurationExceptio
 import org.deeplearning4j.nn.modelimport.keras.KerasModelImport;
 import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationException;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
+import org.nd4j.linalg.api.ndarray.INDArray;
+import utilities.DataManipulation;
 
 public class NeuralNet{
 
@@ -20,8 +22,12 @@ public class NeuralNet{
 	}
 
 	//Checks if the drawing is the currect one.
-	public boolean checkDrawing(BufferedImage image, int n){
-		int[] prediction = graph.predict(loader.asMatrix(image));
+	public boolean checkDrawing(BufferedImage image, int n) throws IOException {
+
+		INDArray matrix = loader.asMatrix(image);
+		matrix = DataManipulation.dataPreprocess(matrix.reshape(1, 1, 225, 225));
+		int[] prediction = graph.predict(matrix);
+		System.out.println(DataManipulation.idToString(n) + " " + DataManipulation.idToString(prediction[0]));
 		return (prediction[0] == n);
 	}
 }
