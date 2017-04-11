@@ -1,6 +1,8 @@
 package utilities;
 
 import org.nd4j.linalg.api.ndarray.INDArray;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
@@ -17,7 +19,10 @@ public class DataManipulation {
 	}
 	//This method returns the String representation of the ID.
 	public static String idToString(int n) throws IOException{
-		FileReader fr = new FileReader("src/main/resources/text/dictionary.txt");
+
+		ClassLoader classLoader = DataManipulation.class.getClassLoader();
+		File dictionary = new File(classLoader.getResource("text/dictionary.txt").getFile());
+		FileReader fr = new FileReader(dictionary);
 		BufferedReader br = new BufferedReader(fr);
 
 		for (int x = 0; x < n; x++){

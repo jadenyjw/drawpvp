@@ -1,6 +1,7 @@
 package ai;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import org.datavec.image.loader.ImageLoader;
 import org.deeplearning4j.nn.modelimport.keras.InvalidKerasConfigurationException;
@@ -17,7 +18,8 @@ public class NeuralNet{
 
 	//Constructs this object with a graph.
 	public NeuralNet() throws IOException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException{
-		graph = KerasModelImport.importKerasSequentialModelAndWeights("ml/drawpvp.h5");
+		ClassLoader classLoader = NeuralNet.class.getClassLoader();
+		graph = KerasModelImport.importKerasSequentialModelAndWeights(classLoader.getResource("model/drawpvp.h5").getPath());
 		loader = new ImageLoader();
 	}
 
