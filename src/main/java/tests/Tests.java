@@ -2,13 +2,10 @@ package tests;
 
 import networking.*;
 import ai.*;
-import utilities.*;
-import org.nd4j.linalg.api.ndarray.INDArray;
-import org.nd4j.linalg.factory.Nd4j;
 
 import java.awt.image.BufferedImage;
 import java.net.InetAddress;
-import org.deeplearning4j.util.ModelSerializer;
+
 
 public class Tests {
 
