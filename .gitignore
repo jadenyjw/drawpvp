@@ -6,4 +6,5 @@ ml/checkpoint.hdf5
 ml/drawpvp.h5
 ml/augmented/*
 ml/notnormalized/*
+target/*
 .idea/*

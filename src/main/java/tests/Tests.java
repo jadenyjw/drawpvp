@@ -8,6 +8,7 @@ import org.nd4j.linalg.factory.Nd4j;
 
 import java.awt.image.BufferedImage;
 import java.net.InetAddress;
+import org.deeplearning4j.util.ModelSerializer;
 
 public class Tests {
 

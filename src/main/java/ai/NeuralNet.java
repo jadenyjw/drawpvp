@@ -3,12 +3,16 @@ package ai;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+
 import org.datavec.image.loader.ImageLoader;
 import org.deeplearning4j.nn.modelimport.keras.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.KerasModelImport;
 import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationException;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
+import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.linalg.api.ndarray.INDArray;
+
 import utilities.DataManipulation;
 
 public class NeuralNet{
@@ -18,8 +22,7 @@ public class NeuralNet{
 
 	//Constructs this object with a graph.
 	public NeuralNet() throws IOException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException{
-		ClassLoader classLoader = NeuralNet.class.getClassLoader();
-		graph = KerasModelImport.importKerasSequentialModelAndWeights(classLoader.getResource("model/drawpvp.h5").getPath());
+		graph = ModelSerializer.restoreMultiLayerNetwork(getClass().getResourceAsStream("/model/model.zip"));
 		loader = new ImageLoader();
 	}
 
