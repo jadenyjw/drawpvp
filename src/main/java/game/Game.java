@@ -66,6 +66,9 @@ public class Game {
         finishedPlayers.remove(player);
     }
 
+    public boolean gameStarted(){
+        return gameStarted;
+    }
     //Get the maximum number of drawings.
     public static int getNumDrawings(){
         return numDrawings;

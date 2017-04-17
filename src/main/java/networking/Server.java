@@ -2,18 +2,49 @@ package networking;
 //Look at this link: http://cs.lmu.edu/~ray/notes/javanetexamples/
 
 import game.*;
+
+import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 
 
 
-public class Server implements Runnable{
+public class Server extends Thread{
 
     protected static final int port = 42069;
     protected Game game;
+    protected ServerSocket serverSocket;
+    protected Socket socket;
 
     public Server() throws Exception{
         game = new Game();
+        try{
+            serverSocket = new ServerSocket(port);
+        }
+        catch (IOException e){
+            System.out.println(e);
+            return;
+        }
+
+
+    }
+    public void run(){
+
+        while(!game.gameStarted()){
+
+            try{
+                socket = serverSocket.accept();
+            }
+            catch(IOException e){
+                System.out.println(e);
+            }
+
+            game.playerJoin(new Player(socket));
+
+
+        }
+
+
     }
 
 
@@ -45,9 +76,6 @@ public class Server implements Runnable{
     }
 
 
-    public void run() {
-
-    }
 
 
 }
