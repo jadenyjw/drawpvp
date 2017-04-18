@@ -44,6 +44,28 @@ public class Server extends Thread{
     }
 
 
+    public void sendMessage(ClientServiceThread cliThread, String msg){
+        try{
+            cliThread.out.writeUTF(msg);
+            cliThread.out.flush();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void sendAll(String msg){
+        try{
+            for(int x = 0; x < threads.size(); x++){
+                threads.get(x).out.writeUTF(msg);
+                threads.get(x).out.flush();
+            }
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
 
     public int requestNextDrawing(Player player) {
 

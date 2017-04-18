@@ -30,14 +30,17 @@ public class Tests {
         try {
             Client client = new Client(InetAddress.getLocalHost().getHostAddress());
             client.start();
+            Client client2 = new Client(InetAddress.getLocalHost().getHostAddress());
+            client2.start();
             try {
                 Thread.sleep(1000);                 //1000 milliseconds is one second.
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            for(long x = 0; x < 1000000000; x++){
+            for(long x = 0; x < 100; x++){
 
                 client.sendMessage("Hello");
+                client2.sendMessage("h2");
             }
 
         }
