@@ -9,29 +9,33 @@ import java.util.ArrayList;
 
 
 
-public class Server{
+public class Server extends Thread{
 
 
     protected static final int port = 42069;
     protected Game game;
     protected ServerSocket serverSocket;
+    protected ArrayList<ClientServiceThread> threads = new ArrayList<ClientServiceThread>();
 
 
-    public Server() throws Exception{
+    public void run(){
         game = new Game();
         try{
             serverSocket = new ServerSocket(port);
+            System.out.println("Server Started");
         }
         catch (IOException e){
             System.out.println(e);
         }
-        while(!game.gameStarted()) {
+
+        while(true) {
             try {
                 Socket clientSocket = serverSocket.accept();
                 ClientServiceThread cliThread = new ClientServiceThread(clientSocket);
+                threads.add(cliThread);
                 cliThread.start();
             } catch(IOException e) {
-                System.out.println(e);
+                e.printStackTrace();
 
             }
         }

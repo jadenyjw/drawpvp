@@ -11,14 +11,15 @@ public class Tests {
 
     public static void main(String[] args) throws Exception{
         testServer();
-        //testClient();
+
+        testClient();
         //testNeuralNet();
     }
 
     private static void testServer(){
         try {
             Server server = new Server();
-            System.out.println("Test");
+            server.start();
         }
         catch (Exception e){
             System.out.println(e);
@@ -27,10 +28,21 @@ public class Tests {
 
     private static void testClient(){
         try {
-            Client client = new Client(InetAddress.getLocalHost());
+            Client client = new Client(InetAddress.getLocalHost().getHostAddress());
+            client.start();
+            try {
+                Thread.sleep(1000);                 //1000 milliseconds is one second.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            for(long x = 0; x < 1000000000; x++){
+
+                client.sendMessage("Hello");
+            }
+
         }
         catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 

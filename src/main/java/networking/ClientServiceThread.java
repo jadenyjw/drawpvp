@@ -7,21 +7,20 @@ import java.net.Socket;
 public class ClientServiceThread extends Thread{
     protected Socket socket;
     protected boolean gameStarted;
+    protected ObjectInputStream in;
+    protected ObjectOutputStream out;
 
-    public ClientServiceThread(){
-        super();
-    }
-    ClientServiceThread(Socket s) {
+    public ClientServiceThread(Socket s) {
         socket = s;
     }
     public void run() {
-        ObjectInputStream in = null;
-        ObjectOutputStream out = null;
+
+
         boolean m_bRunThread = true;
-        System.out.println("Accepted Client Address - " + socket.getInetAddress().getHostName());
+        System.out.println("Accepted Client Address - " + socket.getInetAddress().getHostAddress());
         try {
-            in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());
+            in = new ObjectInputStream(socket.getInputStream());
 
             while(m_bRunThread) {
                 String clientCommand = in.readUTF();
