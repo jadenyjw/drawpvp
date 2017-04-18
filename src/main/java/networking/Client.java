@@ -5,7 +5,7 @@ import java.net.*;
 public class Client {
 	
 	final private int port = 42069;
-	private Socket socket;
+	protected Socket socket;
 	public Client(String ip){
 		try{
 			socket = new Socket(ip, port);

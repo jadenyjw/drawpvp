@@ -24,7 +24,6 @@ public class Server{
         }
         catch (IOException e){
             System.out.println(e);
-            //return;
         }
         while(!game.gameStarted()) {
             try {

@@ -18,18 +18,17 @@ public class ClientServiceThread extends Thread{
         ObjectInputStream in = null;
         ObjectOutputStream out = null;
         boolean m_bRunThread = true;
-        System.out.println(
-                "Accepted Client Address - " + socket.getInetAddress().getHostName());
+        System.out.println("Accepted Client Address - " + socket.getInetAddress().getHostName());
         try {
             in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());
 
             while(m_bRunThread) {
-                String clientCommand = in.readLine();
+                String clientCommand = in.readUTF();
                 System.out.println("Client Says :" + clientCommand);
 
                 if(!gameStarted) {
-                    out.writeBytes("GAME_ALREADY_STARTED");
+                    out.writeUTF("GAME_ALREADY_STARTED");
                     out.flush();
                 }
             }
