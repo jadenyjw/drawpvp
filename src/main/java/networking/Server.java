@@ -9,12 +9,13 @@ import java.util.ArrayList;
 
 
 
-public class Server extends Thread{
+public class Server{
+
 
     protected static final int port = 42069;
     protected Game game;
     protected ServerSocket serverSocket;
-    protected Socket socket;
+
 
     public Server() throws Exception{
         game = new Game();
@@ -23,29 +24,22 @@ public class Server extends Thread{
         }
         catch (IOException e){
             System.out.println(e);
-            return;
+            //return;
         }
-
-
-    }
-    public void run(){
-
-        while(!game.gameStarted()){
-
-            try{
-                socket = serverSocket.accept();
-            }
-            catch(IOException e){
+        while(!game.gameStarted()) {
+            try {
+                Socket clientSocket = serverSocket.accept();
+                ClientServiceThread cliThread = new ClientServiceThread(clientSocket);
+                cliThread.start();
+            } catch(IOException e) {
                 System.out.println(e);
+
             }
-
-            game.playerJoin(new Player(socket));
-
-
         }
 
 
     }
+
 
 
     public int requestNextDrawing(Player player) {

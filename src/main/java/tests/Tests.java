@@ -10,14 +10,15 @@ import java.net.InetAddress;
 public class Tests {
 
     public static void main(String[] args) throws Exception{
-        //testServer();
+        testServer();
         //testClient();
-        testNeuralNet();
+        //testNeuralNet();
     }
 
     private static void testServer(){
         try {
             Server server = new Server();
+            System.out.println("Test");
         }
         catch (Exception e){
             System.out.println(e);

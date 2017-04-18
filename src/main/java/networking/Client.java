@@ -5,8 +5,14 @@ import java.net.*;
 public class Client {
 	
 	final private int port = 42069;
-	public Client(InetAddress ip) throws Exception{
-
+	private Socket socket;
+	public Client(String ip){
+		try{
+			socket = new Socket(ip, port);
+		}
+		catch(IOException e){
+			System.out.println("Could not join game.");
+		}
 	}
 
 	//Gets its own IP Address.
