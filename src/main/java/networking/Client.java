@@ -20,7 +20,10 @@ public class Client extends Thread{
 			System.out.println("Connected to " + ip + " at port " + port);
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
-			System.out.println("created");
+			while(true){
+				String clientCommand = in.readUTF();
+				processServerResponse(clientCommand);
+			}
 		}
 		catch(IOException e){
 			System.out.println("Could not join game.");
@@ -32,25 +35,40 @@ public class Client extends Thread{
 		return InetAddress.getLocalHost().getHostName();
 	}
 
-	//ToDo Asks the server for the drawing of the player.
-	public int requestDrawing(){
-		return 1;
+	public void processServerResponse(String s){
+		
 	}
 
-	//ToDo Sends the server to acknowledge the correct drawing has been drawn.
-	public void sendCorrectDrawing(){
 
+	public int requestDrawing(){
+		sendMessage("REQUEST_DRAWING");
+		return Integer.parseInt(waitResponse());
+	}
+
+	public void sendCorrectDrawing(){
+		sendMessage("CORRECT_DRAWING");
+		requestDrawing();
 	}
 
 	public void sendMessage(String msg){
 		try {
-
 			out.writeUTF(msg);
 			out.flush();
 		}
 		catch(IOException e){
 			e.printStackTrace();
 		}
+	}
+	public String waitResponse(){
+		String response = null;
+		try{
+			response = in.readUTF();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		return response;
+
 	}
 
 

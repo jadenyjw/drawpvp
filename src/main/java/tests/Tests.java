@@ -11,7 +11,6 @@ public class Tests {
 
     public static void main(String[] args) throws Exception{
         testServer();
-
         testClient();
         //testNeuralNet();
     }
