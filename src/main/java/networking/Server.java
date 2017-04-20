@@ -6,7 +6,7 @@ import game.*;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
-
+import java.util.concurrent.ArrayBlockingQueue;
 
 
 public class Server extends Thread{
@@ -20,6 +20,7 @@ public class Server extends Thread{
 
     public void run(){
         game = new Game();
+
         try{
             serverSocket = new ServerSocket(port);
             System.out.println("Server Started");
@@ -31,7 +32,7 @@ public class Server extends Thread{
         while(true) {
             try {
                 Socket clientSocket = serverSocket.accept();
-                ClientServiceThread cliThread = new ClientServiceThread(clientSocket);
+                ClientServiceThread cliThread = new ClientServiceThread(clientSocket, game, threads);
                 threads.add(cliThread);
                 cliThread.start();
             } catch(IOException e) {
@@ -39,7 +40,6 @@ public class Server extends Thread{
 
             }
         }
-
 
     }
 

@@ -21,8 +21,8 @@ public class Client extends Thread{
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
 			while(true){
-				String clientCommand = in.readUTF();
-				processServerResponse(clientCommand);
+				String serverCommand = in.readUTF();
+				processServerResponse(serverCommand);
 			}
 		}
 		catch(IOException e){

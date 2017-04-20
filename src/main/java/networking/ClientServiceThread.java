@@ -1,17 +1,22 @@
 package networking;
 
 
+import game.Game;
+
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ClientServiceThread extends Thread{
     protected Socket socket;
     protected boolean gameStarted;
     protected ObjectInputStream in;
     protected ObjectOutputStream out;
+    protected Server server;
 
-    public ClientServiceThread(Socket s) {
-        socket = s;
+    public ClientServiceThread(Socket s, Game game, ArrayList<ClientServiceThread> threads) {
+        this.socket = s;
+        this.server = server;
     }
     public void run() {
 
@@ -24,15 +29,35 @@ public class ClientServiceThread extends Thread{
 
             while(m_bRunThread) {
                 String clientCommand = in.readUTF();
-                System.out.println("Client Says :" + clientCommand);
-
-                if(!gameStarted) {
-                    out.writeUTF("GAME_ALREADY_STARTED");
-                    out.flush();
-                }
+                processClientResponse(clientCommand);
             }
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void processClientResponse(String s){
+
+    }
+
+    public void sendMessage(String msg){
+        try {
+            out.writeUTF(msg);
+            out.flush();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    public String waitResponse(){
+        String response = null;
+        try{
+            response = in.readUTF();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        return response;
+
     }
 }
