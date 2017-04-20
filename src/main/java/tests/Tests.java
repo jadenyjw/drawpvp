@@ -1,16 +1,14 @@
 package tests;
 
-import networking.*;
 import ai.*;
+import networking.DServer;
 
 import java.awt.image.BufferedImage;
-import java.net.InetAddress;
-
 
 public class Tests {
 
     public static void main(String[] args) throws Exception{
-
+        testServer();
         //testNeuralNet();
     }
 
@@ -24,5 +22,8 @@ public class Tests {
         catch (Exception e){
             System.out.println(e);
         }
+    }
+    private static void testServer(){
+        DServer server = new DServer();
     }
 }
