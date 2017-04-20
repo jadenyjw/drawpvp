@@ -34,6 +34,10 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>clojars</id>
+            <url>http://clojars.org/repo/</url>
+        </repository>
     </repositories>
 
     <distributionManagement>
@@ -42,6 +46,7 @@
             <name>Sonatype Nexus snapshot repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+
         <repository>
             <id>nexus-releases</id>
             <name>Nexus Release Repository</name>
@@ -90,6 +95,13 @@
             <artifactId>datavec-api</artifactId>
             <version>${datavec.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>kryonet</groupId>
+            <artifactId>kryonet</artifactId>
+            <version>2.21</version>
+        </dependency>
+
 
 
 </dependencies>
