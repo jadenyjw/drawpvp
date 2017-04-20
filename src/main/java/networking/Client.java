@@ -36,7 +36,7 @@ public class Client extends Thread{
 	}
 
 	public void processServerResponse(String s){
-		
+
 	}
 
 
