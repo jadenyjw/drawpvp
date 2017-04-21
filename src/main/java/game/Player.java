@@ -2,16 +2,18 @@ package game;
 
 import java.net.*;
 import java.io.*;
+import java.util.UUID;
 
 public class Player{
 
-    protected String username;
     protected int score = 0;
     protected int drawingNum = 0;
+    protected UUID uuid;
+    protected String username;
 
-    public Player(){
-
-
+    public Player(UUID uuid, String username){
+        this.uuid = uuid;
+        this.username = username;
     }
 
     public void addPoints(int n){

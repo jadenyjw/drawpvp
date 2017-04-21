@@ -30,7 +30,7 @@ public class Game {
     }
 
     //Exit the lobby and deny incoming joiners.
-    public void gameStart(){
+    public void startGame(){
         this.gameStarted = true;
         //Do other stuff.
     }

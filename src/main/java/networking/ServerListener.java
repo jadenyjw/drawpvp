@@ -2,7 +2,9 @@ package networking;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
-import game.Game;
+import game.*;
+
+import java.util.UUID;
 
 
 public class ServerListener extends Listener {
@@ -23,11 +25,19 @@ public class ServerListener extends Listener {
 
     public void received(Connection c, Object o){
 
-
-        if(!game.gameStarted()){
-
+        if(o instanceof Packets.JoinRequest) {
+            if (!game.gameStarted()) {
+                game.playerJoin(new Player(UUID.randomUUID(), ((Packets.JoinRequest) o).username));
+                Packets.JoinResponse response = new Packets.JoinResponse();
+                response.accepted = true;
+                c.sendTCP(response);
+            }
         }
-
+        else{
+            Packets.JoinResponse response = new Packets.JoinResponse();
+            response.accepted = false;
+            c.sendTCP(response);
+        }
     }
 
 }

@@ -13,6 +13,7 @@ public class DClient {
         try {
             client = new Client();
             client.start();
+            registerPackets();
             client.connect(5000, ip, port);
             client.addListener(new ClientListener());
         }
@@ -21,7 +22,6 @@ public class DClient {
         }
     }
     private void registerPackets() {
-        // register packets
         Kryo kryo = client.getKryo();
         Packets.registerPackets(kryo);
     }

@@ -15,6 +15,7 @@ public class DServer {
             server = new Server();
             server.start();
             server.bind(port);
+            registerPackets();
             server.addListener(new ServerListener(new Game()));
         }
         catch(IOException e){
@@ -24,7 +25,6 @@ public class DServer {
     }
 
     private void registerPackets() {
-        // register packets
         Kryo kryo = server.getKryo();
         Packets.registerPackets(kryo);
     }
