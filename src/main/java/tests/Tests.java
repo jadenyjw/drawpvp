@@ -14,7 +14,7 @@ public class Tests {
         testClient();
         //testNeuralNet();
     }
-    
+
     private static void testNeuralNet(){
         try {
             NeuralNet net = new NeuralNet();

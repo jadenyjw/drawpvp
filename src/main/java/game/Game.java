@@ -4,12 +4,10 @@ import java.util.*;
 
 public class Game {
 
-    protected Player currentPlayer;
     protected ArrayList<Player> players = new ArrayList<Player>();
     protected ArrayList<Player> finishedPlayers = new ArrayList<Player>();
     protected ArrayList<Integer> drawings = new ArrayList<Integer>();
     protected boolean gameStarted = false; //False means still in lobby.
-    protected boolean gameEnded = false;
     protected static final int numDrawings = 5;
 
     public Game(){
@@ -32,6 +30,7 @@ public class Game {
     //Exit the lobby and deny incoming joiners.
     public void startGame(){
         this.gameStarted = true;
+        System.out.println("Game has started.");
         //Do other stuff.
     }
 
@@ -46,10 +45,8 @@ public class Game {
 
     //Joins the player to the game if it hasn't started yet.
     public void playerJoin(Player player){
-
         players.add(player);
-        System.out.println(player.username + " has joined the game.");
-
+        System.out.println("Game: " + player.username + " has joined the game.");
     }
 
     //The player has finished all their drawings.
@@ -71,7 +68,5 @@ public class Game {
     public static int getNumDrawings(){
         return numDrawings;
     }
-
-
 
 }

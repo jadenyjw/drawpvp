@@ -28,6 +28,9 @@ public class Player{
     public int getDrawingNum(){
         return drawingNum;
     }
+    public String getUsername(){
+        return username;
+    }
 
 
 

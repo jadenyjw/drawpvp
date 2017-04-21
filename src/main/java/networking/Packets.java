@@ -10,13 +10,26 @@ public class Packets {
     public static class JoinResponse{
         boolean accepted;
     }
+    public static class PlayerJoinedNotification{
+        String username;
+    }
+    public static class PlayerLeftNotification{
+        String username;
+    }
     public static class Drawing{
         int id;
     }
 
+    public static class GameStarter{
+
+    }
+
     public static void registerPackets(Kryo kryo){
-        kryo.register(Packets.JoinRequest.class);
-        kryo.register(Packets.JoinResponse.class);
-        kryo.register(Packets.Drawing.class);
+        kryo.register(JoinRequest.class);
+        kryo.register(JoinResponse.class);
+        kryo.register(Drawing.class);
+        kryo.register(PlayerJoinedNotification.class);
+        kryo.register(PlayerLeftNotification.class);
+        kryo.register(GameStarter.class);
     }
 }

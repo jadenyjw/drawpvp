@@ -15,6 +15,18 @@ public class ClientListener extends Listener {
     }
 
     public void received(Connection c, Object o){
+        if(o instanceof Packets.PlayerJoinedNotification){
+            System.out.println("Client: " + ((Packets.PlayerJoinedNotification) o).username + " has joined the game.");
+        }
+
+        if(o instanceof Packets.JoinResponse){
+            if(((Packets.JoinResponse)o).accepted){
+                System.out.println("Client successfully joined.");
+            }
+            else{
+                System.out.println("Game has already started. Join failed.");
+            }
+        }
 
     }
 

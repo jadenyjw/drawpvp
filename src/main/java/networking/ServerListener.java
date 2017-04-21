@@ -11,6 +11,7 @@ import java.util.UUID;
 public class ServerListener extends Listener {
 
     protected Game game;
+    protected DServer server;
     protected ArrayList<ConPlayerPair> pairs = new ArrayList<ConPlayerPair>();
 
     public ServerListener(Game game){
@@ -25,9 +26,15 @@ public class ServerListener extends Listener {
         for(int x = 0; x < pairs.size(); x++){
             if(pairs.get(x).connection.equals(c)){
                 game.playerLeave(pairs.get(x).player);
+                Packets.PlayerLeftNotification notif = new Packets.PlayerLeftNotification();
+                notif.username = pairs.get(x).player.getUsername();
+                pairs.remove(c);
+                sendToAllClients(notif);
                 break;
             }
         }
+
+
     }
 
     public void received(Connection c, Object o){
@@ -40,12 +47,27 @@ public class ServerListener extends Listener {
                 Packets.JoinResponse response = new Packets.JoinResponse();
                 response.accepted = true;
                 c.sendTCP(response);
+                Packets.PlayerJoinedNotification notif = new Packets.PlayerJoinedNotification();
+                notif.username = ((Packets.JoinRequest) o).username;
+                sendToAllClients(notif);
+            }
+            else{
+                Packets.JoinResponse response = new Packets.JoinResponse();
+                response.accepted = false;
+                c.sendTCP(response);
+
             }
         }
-        else{
-            Packets.JoinResponse response = new Packets.JoinResponse();
-            response.accepted = false;
-            c.sendTCP(response);
+
+        if(o instanceof Packets.GameStarter){
+            game.startGame();
+        }
+
+    }
+
+    public void sendToAllClients(Object o){
+        for(int x = 0; x < pairs.size(); x++){
+            pairs.get(x).connection.sendTCP(o);
         }
     }
 
