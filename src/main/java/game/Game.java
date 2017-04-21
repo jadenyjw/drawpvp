@@ -45,14 +45,11 @@ public class Game {
     }
 
     //Joins the player to the game if it hasn't started yet.
-    public boolean playerJoin(Player player){
-        if(!gameStarted){
-            players.add(player);
-            return true;
-        }
-        else{
-            return false;
-        }
+    public void playerJoin(Player player){
+
+        players.add(player);
+        System.out.println(player.username + " has joined the game.");
+
     }
 
     //The player has finished all their drawings.
@@ -64,6 +61,7 @@ public class Game {
     public void playerLeave(Player player){
         players.remove(player);
         finishedPlayers.remove(player);
+        System.out.println(player.username + " has left the game.");
     }
 
     public boolean gameStarted(){
