@@ -14,9 +14,11 @@ public class Player{
 
     }
 
-
     public void addPoints(int n){
         this.score += n;
+    }
+    public int getPoints(){
+        return score;
     }
     public int nextDrawing(){
         return ++this.drawingNum;

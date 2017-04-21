@@ -1,8 +1,11 @@
 package networking;
 
-/**
- * Created by jaden on 4/20/17.
- */
-public class Packets {
 
+public class Packets {
+    class Command{
+        String query;
+    }
+    class Drawing{
+        int id;
+    }
 }
