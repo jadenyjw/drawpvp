@@ -8,6 +8,7 @@ import game.Game;
 public class ServerListener extends Listener {
 
     protected Game game;
+
     public ServerListener(Game game){
         this.game = game;
     }
@@ -21,6 +22,11 @@ public class ServerListener extends Listener {
     }
 
     public void received(Connection c, Object o){
+
+
+        if(!game.gameStarted()){
+
+        }
 
     }
 
