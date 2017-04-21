@@ -24,7 +24,7 @@ public class NeuralNet{
 		loader = new ImageLoader();
 	}
 
-	//Checks if the drawing is the currect one.
+	//Checks if the drawing is the correct one.
 	public boolean checkDrawing(BufferedImage image, int n) throws IOException {
 
 		INDArray matrix = loader.asMatrix(image);

@@ -33,12 +33,11 @@ public class ServerListener extends Listener {
                 break;
             }
         }
-
-
     }
 
     public void received(Connection c, Object o){
 
+        //Receives a request to join the game.
         if(o instanceof Packets.JoinRequest) {
             if (!game.gameStarted()) {
                 Player player = new Player(UUID.randomUUID(), ((Packets.JoinRequest) o).username);
@@ -55,16 +54,19 @@ public class ServerListener extends Listener {
                 Packets.JoinResponse response = new Packets.JoinResponse();
                 response.accepted = false;
                 c.sendTCP(response);
-
+                c.close();
             }
         }
 
+        //Received a call to initiate the game.
         if(o instanceof Packets.GameStarter){
             game.startGame();
+            sendToAllClients(new Packets.GameStarter());
         }
 
     }
 
+    //Broadcast a message to all of the clients.
     public void sendToAllClients(Object o){
         for(int x = 0; x < pairs.size(); x++){
             pairs.get(x).connection.sendTCP(o);
@@ -73,6 +75,7 @@ public class ServerListener extends Listener {
 
 }
 
+//Used for keeping track of players and their respective connections.
 class ConPlayerPair{
     Connection connection;
     Player player;

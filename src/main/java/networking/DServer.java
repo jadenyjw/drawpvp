@@ -24,6 +24,7 @@ public class DServer {
 
     }
 
+    //Registers packets for Kryonet.
     private void registerPackets() {
         Kryo kryo = server.getKryo();
         Packets.registerPackets(kryo);

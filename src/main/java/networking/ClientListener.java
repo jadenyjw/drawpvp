@@ -15,10 +15,13 @@ public class ClientListener extends Listener {
     }
 
     public void received(Connection c, Object o){
+
+        //Received a notification that a new player has joined.
         if(o instanceof Packets.PlayerJoinedNotification){
             System.out.println("Client: " + ((Packets.PlayerJoinedNotification) o).username + " has joined the game.");
         }
 
+        //Receives a response of the server whether or not joining was successful.
         if(o instanceof Packets.JoinResponse){
             if(((Packets.JoinResponse)o).accepted){
                 System.out.println("Client successfully joined.");
@@ -26,6 +29,11 @@ public class ClientListener extends Listener {
             else{
                 System.out.println("Game has already started. Join failed.");
             }
+        }
+
+        //Received a notification that the game has started.
+        if(o instanceof Packets.GameStarter){
+            System.out.println("The host has started the game.");
         }
 
     }

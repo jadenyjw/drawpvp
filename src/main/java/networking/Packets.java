@@ -4,6 +4,7 @@ package networking;
 import com.esotericsoftware.kryo.Kryo;
 
 public class Packets {
+
     public static class JoinRequest{
         String username;
     }
@@ -31,5 +32,6 @@ public class Packets {
         kryo.register(PlayerJoinedNotification.class);
         kryo.register(PlayerLeftNotification.class);
         kryo.register(GameStarter.class);
+
     }
 }

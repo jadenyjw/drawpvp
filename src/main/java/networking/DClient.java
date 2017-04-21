@@ -5,7 +5,6 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 
 import java.io.IOException;
-import java.net.InetAddress;
 
 public class DClient {
     protected static final int port = 42069;
@@ -26,12 +25,20 @@ public class DClient {
         }
     }
 
+    //Joins the game created.
     public void joinGame(){
         Packets.JoinRequest joinPacket = new Packets.JoinRequest();
         joinPacket.username = username;
         client.sendTCP(joinPacket);
     }
 
+    //Initiates a call to start the game.
+    public void startGame(){
+        Packets.GameStarter starter = new Packets.GameStarter();
+        client.sendTCP(starter);
+    }
+
+    //Leaves the game.
     public void leaveGame(){
         try {
             client.dispose();
@@ -41,6 +48,7 @@ public class DClient {
         }
     }
 
+    //Registers the packets for Kryonet.
     private void registerPackets() {
         Kryo kryo = client.getKryo();
         Packets.registerPackets(kryo);
