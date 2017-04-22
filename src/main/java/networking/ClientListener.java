@@ -2,6 +2,7 @@ package networking;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
+import utilities.DataManipulation;
 
 public class ClientListener extends Listener {
 
@@ -22,7 +23,7 @@ public class ClientListener extends Listener {
         }
 
         //Receives a response of the server whether or not joining was successful.
-        if(o instanceof Packets.JoinResponse){
+        else if(o instanceof Packets.JoinResponse){
             if(((Packets.JoinResponse)o).accepted){
                 System.out.println("Client successfully joined.");
             }
@@ -32,8 +33,16 @@ public class ClientListener extends Listener {
         }
 
         //Received a notification that the game has started.
-        if(o instanceof Packets.GameStarter){
+        else if(o instanceof Packets.GameStarter){
             System.out.println("The host has started the game.");
+        }
+
+        else if(o instanceof Packets.Drawing){
+            System.out.println("You have to draw a " + DataManipulation.idToString(((Packets.Drawing) o).id));
+        }
+
+        else if(o instanceof Packets.DrawingsCompleted){
+            System.out.println("You are done all drawings.");
         }
 
     }

@@ -18,9 +18,14 @@ public class Packets {
         String username;
     }
     public static class Drawing{
-        int id;
+        public int id;
     }
+    public static class CorrectDrawing{
 
+    }
+    public static class DrawingsCompleted{
+
+    }
     public static class GameStarter{
 
     }
@@ -32,6 +37,8 @@ public class Packets {
         kryo.register(PlayerJoinedNotification.class);
         kryo.register(PlayerLeftNotification.class);
         kryo.register(GameStarter.class);
+        kryo.register(CorrectDrawing.class);
+        kryo.register(DrawingsCompleted.class);
 
     }
 }

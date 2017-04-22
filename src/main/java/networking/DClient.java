@@ -11,6 +11,7 @@ public class DClient {
     protected Client client;
     protected String username;
 
+
     public DClient(String ip, String username){
         try {
             this.username = username;
@@ -36,6 +37,11 @@ public class DClient {
     public void startGame(){
         Packets.GameStarter starter = new Packets.GameStarter();
         client.sendTCP(starter);
+    }
+
+    public void sendCorrectDrawing(){
+        Packets.CorrectDrawing drawing = new Packets.CorrectDrawing();
+        client.sendTCP(drawing);
     }
 
     //Leaves the game.

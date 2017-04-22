@@ -1,5 +1,9 @@
 package game;
 
+
+import networking.Packets;
+import networking.ServerListener;
+
 import java.util.*;
 
 public class Game {
@@ -9,8 +13,10 @@ public class Game {
     protected ArrayList<Integer> drawings = new ArrayList<Integer>();
     protected boolean gameStarted = false; //False means still in lobby.
     protected static final int numDrawings = 5;
+    protected ServerListener listener;
 
-    public Game(){
+    public Game(ServerListener listener){
+        this.listener = listener;
         Random rand = new Random();
         for(int x = 0; x < numDrawings; x++){
             drawings.add(rand.nextInt(250));
@@ -31,7 +37,14 @@ public class Game {
     public void startGame(){
         this.gameStarted = true;
         System.out.println("Game has started.");
-        //Do other stuff.
+
+        listener.sendToAllClients(new Packets.GameStarter());
+        for(int x = 0; x < listener.pairs.size(); x++){
+            Packets.Drawing drawing = new Packets.Drawing();
+            drawing.id = drawings.get(listener.pairs.get(x).player.getDrawingNum());
+            listener.pairs.get(x).connection.sendTCP(drawing);
+        }
+
     }
 
     //Get a list of current players.
@@ -39,8 +52,25 @@ public class Game {
         return this.players;
     }
     //Checks if drawing is correct.
-    public boolean isCorrectDrawing(Player player, int n){
-        return (n == drawings.get(player.getDrawingNum()));
+    public void playerCorrectDrawing(Player player){
+        if(player.getDrawingNum() < numDrawings - 1){
+            player.nextDrawing();
+            for(int x = 0; x < listener.pairs.size(); x++){
+                if(listener.pairs.get(x).player.equals(player)){
+                    Packets.Drawing drawing = new Packets.Drawing();
+                    drawing.id = drawings.get(listener.pairs.get(x).player.getDrawingNum());
+                    listener.pairs.get(x).connection.sendTCP(drawing);
+                }
+            }
+        }
+        else{
+            Packets.DrawingsCompleted completed = new Packets.DrawingsCompleted();
+            for(int x = 0; x < listener.pairs.size(); x++){
+                if(listener.pairs.get(x).player.equals(player)){
+                    listener.pairs.get(x).connection.sendTCP(completed);
+                }
+            }
+        }
     }
 
     //Joins the player to the game if it hasn't started yet.

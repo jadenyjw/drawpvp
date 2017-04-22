@@ -33,6 +33,11 @@ public class Tests {
             DClient client = new DClient(InetAddress.getLocalHost().getHostAddress(), "Bob");
             client.joinGame();
             client.startGame();
+            client.sendCorrectDrawing();
+            client.sendCorrectDrawing();
+            client.sendCorrectDrawing();
+            client.sendCorrectDrawing();
+            client.sendCorrectDrawing();
 
         } catch (UnknownHostException e) {
             e.printStackTrace();

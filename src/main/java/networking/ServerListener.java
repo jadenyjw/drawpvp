@@ -11,10 +11,13 @@ import java.util.UUID;
 public class ServerListener extends Listener {
 
     protected Game game;
-    protected DServer server;
-    protected ArrayList<ConPlayerPair> pairs = new ArrayList<ConPlayerPair>();
+    public ArrayList<ConPlayerPair> pairs = new ArrayList<ConPlayerPair>();
 
-    public ServerListener(Game game){
+    public ServerListener(){
+
+    }
+
+    public void setGame(Game game){
         this.game = game;
     }
     public void connected(Connection c) {
@@ -61,7 +64,15 @@ public class ServerListener extends Listener {
         //Received a call to initiate the game.
         if(o instanceof Packets.GameStarter){
             game.startGame();
-            sendToAllClients(new Packets.GameStarter());
+        }
+
+        if(o instanceof Packets.CorrectDrawing){
+            for(int x = 0; x < pairs.size(); x++){
+                if(pairs.get(x).connection.equals(c)){
+                    game.playerCorrectDrawing(pairs.get(x).player);
+                    break;
+                }
+            }
         }
 
     }
@@ -75,13 +86,4 @@ public class ServerListener extends Listener {
 
 }
 
-//Used for keeping track of players and their respective connections.
-class ConPlayerPair{
-    Connection connection;
-    Player player;
 
-    public ConPlayerPair(Connection c, Player p){
-        this.connection = c;
-        this.player = p;
-    }
-}

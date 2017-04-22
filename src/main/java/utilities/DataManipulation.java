@@ -18,18 +18,26 @@ public class DataManipulation {
 		return image;
 	}
 	//This method returns the String representation of the ID.
-	public static String idToString(int n) throws IOException{
+	public static String idToString(int n){
 
-		ClassLoader classLoader = DataManipulation.class.getClassLoader();
-		File dictionary = new File(classLoader.getResource("text/dictionary.txt").getFile());
-		FileReader fr = new FileReader(dictionary);
-		BufferedReader br = new BufferedReader(fr);
+		String drawing = null;
+		try{
+			ClassLoader classLoader = DataManipulation.class.getClassLoader();
+			File dictionary = new File(classLoader.getResource("text/dictionary.txt").getFile());
+			FileReader fr = new FileReader(dictionary);
+			BufferedReader br = new BufferedReader(fr);
 
-		for (int x = 0; x < n; x++){
-			br.readLine();
+			for (int x = 0; x < n; x++){
+				br.readLine();
+			}
+
+			drawing = br.readLine();
 		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+		return drawing;
 
-    	return br.readLine();
 	}
 
 
