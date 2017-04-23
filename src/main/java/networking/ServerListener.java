@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ServerListener extends Listener {
 
-    protected Game game;
+    public Game game;
     public ArrayList<ConPlayerPair> pairs = new ArrayList<ConPlayerPair>();
 
     public ServerListener(){

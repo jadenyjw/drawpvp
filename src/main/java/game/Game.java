@@ -35,6 +35,9 @@ public class Game {
         }
         listener.sendToAllClients(ender);
         listener.setGame(new Game(listener));
+        for(int x = 0; x < listener.pairs.size(); x++){
+            listener.game.playerJoin(listener.pairs.get(x).player);
+        }
 
     }
 
