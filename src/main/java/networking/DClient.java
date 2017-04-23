@@ -44,6 +44,12 @@ public class DClient {
         client.sendTCP(drawing);
     }
 
+    public void sendChatMessage(String msg){
+        Packets.ChatMessage message = new Packets.ChatMessage();
+        message.message = msg;
+        client.sendTCP(message);
+    }
+
     //Leaves the game.
     public void leaveGame(){
         try {

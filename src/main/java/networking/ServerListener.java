@@ -31,7 +31,7 @@ public class ServerListener extends Listener {
                 game.playerLeave(pairs.get(x).player);
                 Packets.PlayerLeftNotification notif = new Packets.PlayerLeftNotification();
                 notif.username = pairs.get(x).player.getUsername();
-                pairs.remove(c);
+                pairs.remove(x);
                 sendToAllClients(notif);
                 break;
             }
@@ -62,17 +62,30 @@ public class ServerListener extends Listener {
         }
 
         //Received a call to initiate the game.
-        if(o instanceof Packets.GameStarter){
+        else if(o instanceof Packets.GameStarter){
             game.startGame();
         }
 
-        if(o instanceof Packets.CorrectDrawing){
+        else if(o instanceof Packets.CorrectDrawing){
             for(int x = 0; x < pairs.size(); x++){
                 if(pairs.get(x).connection.equals(c)){
                     game.playerCorrectDrawing(pairs.get(x).player);
                     break;
                 }
             }
+        }
+
+        else if(o instanceof Packets.ChatMessage){
+            String username = null;
+            for(int x = 0; x < pairs.size(); x++){
+                if(pairs.get(x).connection.equals(c)){
+                    username = pairs.get(x).player.getUsername();
+                }
+            }
+            String msg = ((Packets.ChatMessage) o).message;
+            Packets.ChatMessage newMessage = new Packets.ChatMessage();
+            newMessage.message = username + ": " + msg;
+            sendToAllClients(newMessage);
         }
 
     }

@@ -36,6 +36,7 @@ public class Game {
             ender.players[x] = finishedPlayers.get(x).getUsername();
         }
         listener.sendToAllClients(ender);
+        gameStarted = false;
     }
 
     //Exit the lobby and deny incoming joiners.
@@ -56,7 +57,8 @@ public class Game {
     public ArrayList<Player> getPlayers(){
         return this.players;
     }
-    //Checks if drawing is correct.
+    
+    //Handles correct player drawings.
     public void playerCorrectDrawing(Player player){
         if(player.getDrawingNum() < numDrawings - 1){
             player.nextDrawing();

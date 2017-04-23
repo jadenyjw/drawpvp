@@ -55,6 +55,10 @@ public class ClientListener extends Listener {
             System.out.println("You are done all drawings.");
         }
 
+        else if (o instanceof Packets.ChatMessage){
+            System.out.println(((Packets.ChatMessage) o).message);
+        }
+
     }
 
 
