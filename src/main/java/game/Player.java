@@ -11,6 +11,9 @@ public class Player{
     protected UUID uuid;
     protected String username;
 
+    public Player(){
+
+    }
     public Player(UUID uuid, String username){
         this.uuid = uuid;
         this.username = username;

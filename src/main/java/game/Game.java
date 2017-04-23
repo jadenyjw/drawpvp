@@ -28,9 +28,14 @@ public class Game {
     }
 
     //Checks if all players are finished their drawings.
-    public boolean gameEnded()
+    public void gameEnded()
     {
-        return(players.size() == finishedPlayers.size());
+        Packets.GameEnder ender = new Packets.GameEnder();
+        ender.players = new String[finishedPlayers.size()];
+        for(int x = 0; x < finishedPlayers.size(); x++){
+            ender.players[x] = finishedPlayers.get(x).getUsername();
+        }
+        listener.sendToAllClients(ender);
     }
 
     //Exit the lobby and deny incoming joiners.
@@ -67,9 +72,17 @@ public class Game {
             Packets.DrawingsCompleted completed = new Packets.DrawingsCompleted();
             for(int x = 0; x < listener.pairs.size(); x++){
                 if(listener.pairs.get(x).player.equals(player)){
+                    finishedPlayers.add(listener.pairs.get(x).player);
                     listener.pairs.get(x).connection.sendTCP(completed);
                 }
             }
+
+            //Check for game finished.
+
+            if(finishedPlayers.size() == players.size()){
+                gameEnded();
+            }
+
         }
     }
 

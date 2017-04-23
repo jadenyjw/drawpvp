@@ -32,12 +32,19 @@ public class Tests {
         try {
             DClient client = new DClient(InetAddress.getLocalHost().getHostAddress(), "Bob");
             client.joinGame();
+            DClient client2 = new DClient(InetAddress.getLocalHost().getHostAddress(), "John");
+            client2.joinGame();
             client.startGame();
             client.sendCorrectDrawing();
             client.sendCorrectDrawing();
             client.sendCorrectDrawing();
             client.sendCorrectDrawing();
             client.sendCorrectDrawing();
+            client2.sendCorrectDrawing();
+            client2.sendCorrectDrawing();
+            client2.sendCorrectDrawing();
+            client2.sendCorrectDrawing();
+            client2.sendCorrectDrawing();
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
