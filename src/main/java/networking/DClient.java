@@ -39,11 +39,13 @@ public class DClient {
         client.sendTCP(starter);
     }
 
+    //Tell the server that the correct drawing has been drawn.
     public void sendCorrectDrawing(){
         Packets.CorrectDrawing drawing = new Packets.CorrectDrawing();
         client.sendTCP(drawing);
     }
 
+    //Sends a chat message to the server.
     public void sendChatMessage(String msg){
         Packets.ChatMessage message = new Packets.ChatMessage();
         message.message = msg;
@@ -52,12 +54,10 @@ public class DClient {
 
     //Leaves the game.
     public void leaveGame(){
-        try {
-            client.dispose();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+
+            client.close();
+
+
     }
 
     //Registers the packets for Kryonet.

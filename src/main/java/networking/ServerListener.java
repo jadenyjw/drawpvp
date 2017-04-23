@@ -5,7 +5,6 @@ import com.esotericsoftware.kryonet.Listener;
 import game.*;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 
 public class ServerListener extends Listener {
@@ -42,8 +41,9 @@ public class ServerListener extends Listener {
 
         //Receives a request to join the game.
         if(o instanceof Packets.JoinRequest) {
+            //Responds depending on whether or not the game has started.
             if (!game.gameStarted()) {
-                Player player = new Player(UUID.randomUUID(), ((Packets.JoinRequest) o).username);
+                Player player = new Player(((Packets.JoinRequest) o).username);
                 pairs.add(new ConPlayerPair(c, player));
                 game.playerJoin(player);
                 Packets.JoinResponse response = new Packets.JoinResponse();
@@ -66,6 +66,7 @@ public class ServerListener extends Listener {
             game.startGame();
         }
 
+        //Receives a correct drawing acknowledgement from the client.
         else if(o instanceof Packets.CorrectDrawing){
             for(int x = 0; x < pairs.size(); x++){
                 if(pairs.get(x).connection.equals(c)){
@@ -75,6 +76,7 @@ public class ServerListener extends Listener {
             }
         }
 
+        //Receives a chat message from the server.
         else if(o instanceof Packets.ChatMessage){
             String username = null;
             for(int x = 0; x < pairs.size(); x++){
@@ -82,6 +84,8 @@ public class ServerListener extends Listener {
                     username = pairs.get(x).player.getUsername();
                 }
             }
+
+            //Broadcasts that chat message to all players.
             String msg = ((Packets.ChatMessage) o).message;
             Packets.ChatMessage newMessage = new Packets.ChatMessage();
             newMessage.message = username + ": " + msg;

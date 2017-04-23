@@ -6,31 +6,23 @@ import java.util.UUID;
 
 public class Player{
 
-    protected int score = 0;
     protected int drawingNum = 0;
-    protected UUID uuid;
     protected String username;
 
     public Player(){
 
     }
-    public Player(UUID uuid, String username){
-        this.uuid = uuid;
+    public Player(String username){
         this.username = username;
     }
 
-    public void addPoints(int n){
-        this.score += n;
-    }
-    public int getPoints(){
-        return score;
-    }
     public int nextDrawing(){
         return ++this.drawingNum;
     }
     public int getDrawingNum(){
         return drawingNum;
     }
+    public void resetDrawingNum() {drawingNum = 0;}
     public String getUsername(){
         return username;
     }

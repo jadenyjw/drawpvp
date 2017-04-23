@@ -9,7 +9,6 @@ import java.io.IOException;
 public class DServer {
     protected static final int port = 42069;
     protected Server server;
-    protected ServerListener listener;
 
     public DServer(){
         try{
@@ -27,9 +26,7 @@ public class DServer {
         }
 
     }
-    public void sendAll(Object o){
-        server.sendToAllTCP(o);
-    }
+
     //Registers packets for Kryonet.
     private void registerPackets() {
         Kryo kryo = server.getKryo();

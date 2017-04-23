@@ -40,21 +40,26 @@ public class ClientListener extends Listener {
             System.out.println("The host has started the game.");
         }
 
+        //Received a notification that the game has ended.
         else if(o instanceof Packets.GameEnder){
+            System.out.println("The game has ended. These are the standings:");
             String[] players = ((Packets.GameEnder) o).players;
             for(int x = 0; x < players.length; x++){
                 System.out.println((x+1) + ". " + players[x]);
             }
         }
 
+        //Receives a new drawing assignment from the server.
         else if(o instanceof Packets.Drawing){
             System.out.println("You have to draw a " + DataManipulation.idToString(((Packets.Drawing) o).id));
         }
 
+        //Acknowledges that all drawings have been completed.
         else if(o instanceof Packets.DrawingsCompleted){
             System.out.println("You are done all drawings.");
         }
 
+        //Receives a chat message.
         else if (o instanceof Packets.ChatMessage){
             System.out.println(((Packets.ChatMessage) o).message);
         }
