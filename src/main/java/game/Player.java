@@ -9,9 +9,6 @@ public class Player{
     protected int drawingNum = 0;
     protected String username;
 
-    public Player(){
-
-    }
     public Player(String username){
         this.username = username;
     }

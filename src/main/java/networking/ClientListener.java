@@ -2,10 +2,7 @@ package networking;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
-import game.Player;
 import utilities.DataManipulation;
-
-import java.util.ArrayList;
 
 public class ClientListener extends Listener {
 

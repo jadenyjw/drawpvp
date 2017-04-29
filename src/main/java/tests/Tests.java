@@ -33,37 +33,27 @@ public class Tests {
             DClient client = new DClient(InetAddress.getLocalHost().getHostAddress(), "Bob");
             client.joinGame();
             stay(500);
-            DClient client2 = new DClient(InetAddress.getLocalHost().getHostAddress(), "John");
-            client2.joinGame();
-            stay(500);
             client.startGame();
-            client2.sendChatMessage("Hello.");
-            stay(500);
-            client.sendChatMessage("Bye.");
-            stay(500);
-            for(int x = 0; x < 5; x++){
-                client.sendCorrectDrawing();
-                stay(500);
-                client2.sendCorrectDrawing();
-                stay(500);
+            stay(50);
+
+            for(int x = 0; x < 1000000; x++){
+                client.startGame();
+                for(int y = 0; y < 5; y++){
+                    client.sendCorrectDrawing();
+                    stay(1);
+
+                }
             }
 
-            client2.leaveGame();
-            stay(500);
-            client.startGame();
-            for(int x = 0; x < 5; x++){
-                client.sendCorrectDrawing();
-                stay(300);
-            }
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
     }
 
-    private static void stay(long n){
+    private static void stay(int ms){
         try{
-            Thread.sleep(n);
+            Thread.sleep(ms);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
