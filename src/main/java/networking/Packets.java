@@ -2,6 +2,9 @@ package networking;
 
 
 import com.esotericsoftware.kryo.Kryo;
+import game.Player;
+
+import java.util.ArrayList;
 
 public class Packets {
 
@@ -30,6 +33,14 @@ public class Packets {
 
     }
 
+    public static class GameEnder{
+        public String[] players;
+    }
+    public static class ChatMessage{
+        String message;
+    }
+
+
     public static void registerPackets(Kryo kryo){
         kryo.register(JoinRequest.class);
         kryo.register(JoinResponse.class);
@@ -39,6 +50,9 @@ public class Packets {
         kryo.register(GameStarter.class);
         kryo.register(CorrectDrawing.class);
         kryo.register(DrawingsCompleted.class);
+        kryo.register(GameEnder.class);
+        kryo.register(String[].class);
+        kryo.register(ChatMessage.class);
 
     }
 }

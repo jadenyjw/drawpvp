@@ -17,10 +17,7 @@ public class Game {
 
     public Game(ServerListener listener){
         this.listener = listener;
-        Random rand = new Random();
-        for(int x = 0; x < numDrawings; x++){
-            drawings.add(rand.nextInt(250));
-        }
+        generateDrawings();
     }
 
     public ArrayList<Integer> getDrawings(){
@@ -28,9 +25,20 @@ public class Game {
     }
 
     //Checks if all players are finished their drawings.
-    public boolean gameEnded()
+    public void gameEnded()
     {
-        return(players.size() == finishedPlayers.size());
+        Packets.GameEnder ender = new Packets.GameEnder();
+        ender.players = new String[finishedPlayers.size()];
+        for(int x = 0; x < finishedPlayers.size(); x++){
+            ender.players[x] = finishedPlayers.get(x).getUsername();
+            finishedPlayers.get(x).resetDrawingNum();
+        }
+        listener.sendToAllClients(ender);
+        listener.setGame(new Game(listener));
+        for(int x = 0; x < listener.pairs.size(); x++){
+            listener.game.playerJoin(listener.pairs.get(x).player);
+        }
+
     }
 
     //Exit the lobby and deny incoming joiners.
@@ -51,7 +59,8 @@ public class Game {
     public ArrayList<Player> getPlayers(){
         return this.players;
     }
-    //Checks if drawing is correct.
+
+    //Handles correct player drawings.
     public void playerCorrectDrawing(Player player){
         if(player.getDrawingNum() < numDrawings - 1){
             player.nextDrawing();
@@ -67,9 +76,17 @@ public class Game {
             Packets.DrawingsCompleted completed = new Packets.DrawingsCompleted();
             for(int x = 0; x < listener.pairs.size(); x++){
                 if(listener.pairs.get(x).player.equals(player)){
+                    finishedPlayers.add(listener.pairs.get(x).player);
                     listener.pairs.get(x).connection.sendTCP(completed);
                 }
             }
+
+            //Check for game finished.
+
+            if(finishedPlayers.size() == players.size()){
+                gameEnded();
+            }
+
         }
     }
 
@@ -79,10 +96,6 @@ public class Game {
         System.out.println("Game: " + player.username + " has joined the game.");
     }
 
-    //The player has finished all their drawings.
-    public void playerFinished(Player player){
-        finishedPlayers.add(player);
-    }
 
     //The player has left the game.
     public void playerLeave(Player player){
@@ -94,9 +107,15 @@ public class Game {
     public boolean gameStarted(){
         return gameStarted;
     }
-    //Get the maximum number of drawings.
-    public static int getNumDrawings(){
-        return numDrawings;
+
+    public void generateDrawings(){
+        Random rand = new Random();
+        //Generates the drawings for the players.
+        drawings.clear();
+        for(int x = 0; x < numDrawings; x++){
+            drawings.add(rand.nextInt(250));
+        }
     }
+
 
 }

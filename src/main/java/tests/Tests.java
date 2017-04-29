@@ -22,7 +22,7 @@ public class Tests {
             System.out.println(net.checkDrawing(image, 248));
         }
         catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
     private static void testServer(){
@@ -32,14 +32,39 @@ public class Tests {
         try {
             DClient client = new DClient(InetAddress.getLocalHost().getHostAddress(), "Bob");
             client.joinGame();
+            stay(500);
+            DClient client2 = new DClient(InetAddress.getLocalHost().getHostAddress(), "John");
+            client2.joinGame();
+            stay(500);
             client.startGame();
-            client.sendCorrectDrawing();
-            client.sendCorrectDrawing();
-            client.sendCorrectDrawing();
-            client.sendCorrectDrawing();
-            client.sendCorrectDrawing();
+            client2.sendChatMessage("Hello.");
+            stay(500);
+            client.sendChatMessage("Bye.");
+            stay(500);
+            for(int x = 0; x < 5; x++){
+                client.sendCorrectDrawing();
+                stay(500);
+                client2.sendCorrectDrawing();
+                stay(500);
+            }
+
+            client2.leaveGame();
+            stay(500);
+            client.startGame();
+            for(int x = 0; x < 5; x++){
+                client.sendCorrectDrawing();
+                stay(300);
+            }
 
         } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void stay(long n){
+        try{
+            Thread.sleep(n);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
