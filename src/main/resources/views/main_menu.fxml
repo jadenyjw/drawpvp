@@ -16,7 +16,7 @@
    <children>
       <VBox layoutX="257.0" layoutY="135.0">
          <children>
-            <JFXButton alignment="CENTER" onAction="#goElectrical" ripplerFill="#1f8bff" text="New Game" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+            <JFXButton fx:id="newGameButton" alignment="CENTER" onAction="#goElectrical" ripplerFill="#1f8bff" text="New Game" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -53,12 +53,12 @@
       <HBox layoutX="207.0" layoutY="305.0" prefHeight="85.0" prefWidth="200.0" />
       <ImageView fitHeight="197.0" fitWidth="200.0" layoutX="26.0" layoutY="114.0">
          <image>
-            <Image url="@../../resources/images/menu1.png" />
+            <Image url="@../images/menu1.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="369.0" layoutY="113.0">
          <image>
-            <Image url="@../../resources/images/menu2.png" />
+            <Image url="@../images/menu2.png" />
          </image>
       </ImageView>
    </children>
