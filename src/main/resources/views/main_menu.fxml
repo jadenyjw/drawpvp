@@ -16,7 +16,7 @@
    <children>
       <VBox layoutX="257.0" layoutY="135.0">
          <children>
-            <JFXButton fx:id="newGameButton" alignment="CENTER" onAction="#goElectrical" ripplerFill="#1f8bff" text="New Game" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+            <JFXButton fx:id="newGameButton" alignment="CENTER" onAction="#hostLobbyScreen" ripplerFill="#1f8bff" text="New Game" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
