@@ -12,15 +12,22 @@ import networking.DServer;
 import java.io.IOException;
 
 public class Main extends Application {
-    private Stage primaryStage;
+    public static Stage primaryStage;
     private AnchorPane mainLayout;
     public static DServer server;
     public static DClient client;
 
     public void start(Stage primaryStage) throws IOException{
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("dRAWPVP");
+        this.primaryStage.setTitle("DrawPVP");
         showMainMenu();
+    }
+
+    @Override
+    public void stop(){
+        if(!server.equals(null)){
+            server.close();
+        }
     }
     public void showMainMenu() throws IOException
     {

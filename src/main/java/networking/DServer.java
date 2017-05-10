@@ -32,4 +32,13 @@ public class DServer {
         Kryo kryo = server.getKryo();
         Packets.registerPackets(kryo);
     }
+
+    public void close(){
+        try{
+            server.dispose();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 }

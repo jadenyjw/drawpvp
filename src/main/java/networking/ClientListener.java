@@ -2,6 +2,7 @@ package networking;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
+import gui.HostJoinController;
 import utilities.DataManipulation;
 
 public class ClientListener extends Listener {
@@ -26,9 +27,11 @@ public class ClientListener extends Listener {
         else if(o instanceof Packets.JoinResponse){
             if(((Packets.JoinResponse)o).accepted){
                 System.out.println("Client successfully joined.");
+                HostJoinController.displayGameJoinSucceeded();
             }
             else{
                 System.out.println("Game has already started. Join failed.");
+                HostJoinController.displayGameJoinFailed();
             }
         }
 

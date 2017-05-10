@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HostJoinController">
    <children>
       <VBox layoutX="200.0" layoutY="74.0" prefHeight="222.0" prefWidth="200.0">
          <children>
@@ -35,7 +35,7 @@
       </VBox>
       <HBox alignment="CENTER" layoutX="192.0" layoutY="279.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <JFXButton contentDisplay="CENTER" prefHeight="78.0" prefWidth="87.0" ripplerFill="#2ae157" text="Join" textAlignment="CENTER">
+            <JFXButton onAction="#joinGame" contentDisplay="CENTER" prefHeight="78.0" prefWidth="87.0" ripplerFill="#2ae157" text="Join" textAlignment="CENTER">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
