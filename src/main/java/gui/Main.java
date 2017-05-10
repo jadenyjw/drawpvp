@@ -6,13 +6,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import networking.DClient;
+import networking.DServer;
 
 import java.io.IOException;
 
 public class Main extends Application {
     private Stage primaryStage;
     private AnchorPane mainLayout;
-    private AnchorPane lobbyLayout;
+    public static DServer server;
+    public static DClient client;
 
     public void start(Stage primaryStage) throws IOException{
         this.primaryStage = primaryStage;
