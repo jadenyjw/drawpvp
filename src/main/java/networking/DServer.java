@@ -9,7 +9,7 @@ import java.io.IOException;
 public class DServer {
     protected static final int port = 42069;
     protected Server server;
-
+    public Server listener;
     public DServer(){
         try{
             server = new Server();

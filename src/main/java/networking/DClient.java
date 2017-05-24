@@ -54,10 +54,7 @@ public class DClient {
 
     //Leaves the game.
     public void leaveGame(){
-
-            client.close();
-
-
+        client.close();
     }
 
     //Registers the packets for Kryonet.
