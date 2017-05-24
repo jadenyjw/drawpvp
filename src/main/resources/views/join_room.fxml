@@ -21,7 +21,7 @@
                   <Insets bottom="15.0" top="15.0" />
                </padding>
             </Label>
-            <JFXTextField promptText="Your name here" />
+            <JFXTextField promptText="Your name here" fx:id="username" />
             <Label prefHeight="71.0" prefWidth="112.0" text="IP Address" textAlignment="CENTER">
                <font>
                   <Font size="21.0" />
@@ -30,7 +30,7 @@
                   <Insets bottom="20.0" top="20.0" />
                </padding>
             </Label>
-            <JFXTextField promptText="Enter the host's IP" />
+            <JFXTextField promptText="Enter the host's IP" fx:id="ip" />
          </children>
       </VBox>
       <HBox alignment="CENTER" layoutX="192.0" layoutY="279.0" prefHeight="100.0" prefWidth="200.0">
