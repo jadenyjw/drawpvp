@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HostJoinController">
    <children>
       <VBox layoutX="200.0" layoutY="74.0" prefHeight="222.0" prefWidth="200.0">
@@ -22,7 +21,7 @@
                   <Insets bottom="15.0" top="15.0" />
                </padding>
             </Label>
-            <JFXTextField promptText="Your name here" fx:id="username"/>
+            <JFXTextField fx:id="username" promptText="Your name here" />
             <Label prefHeight="42.0" prefWidth="95.0" text="Drawings" textAlignment="CENTER">
                <font>
                   <Font size="21.0" />
@@ -33,11 +32,19 @@
             </Label>
          </children>
       </VBox>
-      <HBox alignment="CENTER" layoutX="192.0" layoutY="279.0" prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" layoutX="98.0" layoutY="279.0" prefHeight="100.0" prefWidth="416.0">
          <children>
-            <JFXButton onAction="#hostGame" contentDisplay="CENTER" prefHeight="78.0" prefWidth="87.0" ripplerFill="#2ae157" text="Host" textAlignment="CENTER">
+            <JFXButton prefHeight="47.0" prefWidth="90.0" text="Back">
+               <font>
+                  <Font size="22.0" />
+               </font>
                <HBox.margin>
-                  <Insets />
+                  <Insets right="75.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton contentDisplay="CENTER" onAction="#hostGame" prefHeight="42.0" prefWidth="104.0" ripplerFill="#2ae157" text="Host" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets left="75.0" />
                </HBox.margin>
                <font>
                   <Font size="22.0" />

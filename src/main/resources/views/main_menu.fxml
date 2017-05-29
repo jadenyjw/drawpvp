@@ -8,12 +8,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuController">
    <children>
+      <ImageView fitHeight="416.0" fitWidth="615.0" layoutY="-14.0">
+         <image>
+            <Image url="@../images/bg.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="121.0" fitWidth="106.0" layoutX="480.0" layoutY="106.0">
+         <image>
+            <Image url="@../images/Fancy-pants_big.png" />
+         </image>
+      </ImageView>
       <VBox layoutX="257.0" layoutY="135.0">
          <children>
             <JFXButton fx:id="newGameButton" alignment="CENTER" onAction="#hostLobbyScreen" ripplerFill="#1f8bff" text="New Game" textAlignment="CENTER" VBox.vgrow="ALWAYS">
@@ -24,41 +32,36 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </JFXButton>
-            <JFXButton fx:id="hostGameButton" onAction="#joinLobbyScreen" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" ripplerFill="#bf23b5" text="Join Game" VBox.vgrow="ALWAYS">
+            <JFXButton fx:id="hostGameButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#joinLobbyScreen" ripplerFill="#bf23b5" text="Join Game" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </JFXButton>
-            <JFXButton buttonType="RAISED" graphicTextGap="0.0" ripplerFill="#1bbc20" text="Help" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+            <JFXButton buttonType="RAISED" graphicTextGap="0.0" prefHeight="57.0" prefWidth="98.0" ripplerFill="#1bbc20" text="Help" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
                <VBox.margin>
-                  <Insets left="15.0" />
+                  <Insets />
                </VBox.margin>
             </JFXButton>
          </children>
       </VBox>
-      <HBox layoutX="172.0" layoutY="9.0" prefHeight="109.0" prefWidth="275.0">
-         <children>
-            <Label alignment="CENTER" prefHeight="110.0" prefWidth="277.0" text="Draw PVP" textAlignment="CENTER">
-               <font>
-                  <Font name="Comic Sans MS" size="43.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <Circle fill="#35ff3f" layoutX="541.0" layoutY="65.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
-      <QuadCurve controlX="-50.0" controlY="-100.0" endX="50.0" fill="#ff730e" layoutX="64.0" layoutY="73.0" startX="-50.0" stroke="BLACK" strokeType="INSIDE" />
+      <HBox layoutX="14.0" layoutY="9.0" prefHeight="109.0" prefWidth="275.0" />
       <HBox layoutX="207.0" layoutY="305.0" prefHeight="85.0" prefWidth="200.0" />
-      <ImageView fitHeight="197.0" fitWidth="200.0" layoutX="26.0" layoutY="114.0">
-         <image>
-            <Image url="@../images/menu1.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="369.0" layoutY="113.0">
+      <ImageView fitHeight="228.0" fitWidth="228.0" layoutX="14.0" layoutY="107.0">
          <image>
             <Image url="@../images/menu2.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="169.0" layoutY="9.0" prefHeight="110.0" prefWidth="277.0" text="Draw PVP" textAlignment="CENTER">
+         <font>
+            <Font name="Freestyle Script" size="62.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="290.0" fitWidth="432.0" layoutX="336.0" layoutY="97.0">
+         <image>
+            <Image url="@../images/rawr.png" />
          </image>
       </ImageView>
    </children>
