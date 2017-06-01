@@ -28,8 +28,14 @@ public class ServerListener extends Listener {
         for(int x = 0; x < pairs.size(); x++){
             if(pairs.get(x).connection.equals(c)){
                 game.playerLeave(pairs.get(x).player);
-                Packets.PlayerLeftNotification notif = new Packets.PlayerLeftNotification();
-                notif.username = pairs.get(x).player.getUsername();
+                Packets.PlayerUpdate notif = new Packets.PlayerUpdate();
+                String[] players = new String[pairs.size() - 1];
+                for(int y = 0; y < pairs.size(); y++){
+                    if(y != x){
+                        players[y] = pairs.get(x).player.getUsername();
+                    }
+                }
+                notif.players = players;
                 pairs.remove(x);
                 sendToAllClients(notif);
                 break;
@@ -50,11 +56,13 @@ public class ServerListener extends Listener {
                 response.accepted = true;
                 c.sendTCP(response);
 
-                Packets.PlayerJoinedNotification notif = new Packets.PlayerJoinedNotification();
-                notif.username = ((Packets.JoinRequest) o).username;
+                Packets.PlayerUpdate notif = new Packets.PlayerUpdate();
+                String[] players = new String[pairs.size()];
+                for(int x = 0; x < pairs.size(); x++){
+                    players[x] = pairs.get(x).player.getUsername();
+                }
+                notif.players = players;
                 sendToAllClients(notif);
-
-
             }
             else{
                 Packets.JoinResponse response = new Packets.JoinResponse();

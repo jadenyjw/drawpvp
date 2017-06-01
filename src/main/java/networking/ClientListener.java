@@ -32,8 +32,10 @@ public class ClientListener extends Listener {
     public void received(Connection c, Object o){
 
         //Received a notification that a new player has joined.
-        if(o instanceof Packets.PlayerJoinedNotification){
-            System.out.println("Client: " + ((Packets.PlayerJoinedNotification) o).username + " has joined the game.");
+        if(o instanceof Packets.PlayerUpdate){
+            if(!gameStarted){
+                Main.lobby.playersUpdate(((Packets.PlayerUpdate) o).players);
+            }
         }
 
         //Receives a response of the server whether or not joining was successful.
@@ -76,9 +78,9 @@ public class ClientListener extends Listener {
 
         //Receives a chat message.
         else if (o instanceof Packets.ChatMessage){
-            System.out.println(Main.lobby);
-            Main.lobby.displayChatMessage(((Packets.ChatMessage) o).message);
-
+            if(!gameStarted){
+                Main.lobby.displayChatMessage(((Packets.ChatMessage) o).message);
+            }
         }
 
     }

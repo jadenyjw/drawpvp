@@ -19,6 +19,7 @@ public class Main extends Application {
     public static DClient client;
 
     public static LobbyController lobby;
+    public static GameController game;
 
     public void start(Stage primaryStage) throws IOException{
         this.primaryStage = primaryStage;

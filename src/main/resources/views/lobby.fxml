@@ -59,7 +59,7 @@
       <VBox prefHeight="204.0" prefWidth="22.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <JFXListView prefHeight="210.0" prefWidth="118.0" BorderPane.alignment="CENTER">
+      <JFXListView fx:id="players" prefHeight="210.0" prefWidth="118.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="20.0" right="10.0" />
          </BorderPane.margin>
