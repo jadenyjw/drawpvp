@@ -10,6 +10,7 @@ public class DClient {
     protected static final int port = 42069;
     protected Client client;
     protected String username;
+    public Boolean gameStarted = false;
 
 
     public DClient(String ip, String username){

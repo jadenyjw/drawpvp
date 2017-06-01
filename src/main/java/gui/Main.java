@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class Main extends Application {
     public static Stage primaryStage;
+    public static Scene primaryScene;
     private AnchorPane mainLayout;
     public static DServer server;
     public static DClient client;
@@ -34,8 +35,8 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("/views/main_menu.fxml"));
         mainLayout = loader.load();
-        Scene scene = new Scene(mainLayout);
-        primaryStage.setScene(scene);
+        primaryScene = new Scene(mainLayout);
+        primaryStage.setScene(primaryScene);
         primaryStage.show();
 
     }

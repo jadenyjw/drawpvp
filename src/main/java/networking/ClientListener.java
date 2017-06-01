@@ -3,9 +3,18 @@ package networking;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import gui.HostJoinController;
+import gui.LobbyController;
+import gui.Main;
 import utilities.DataManipulation;
 
 public class ClientListener extends Listener {
+
+
+    public boolean gameStarted = false;
+
+    public ClientListener(){
+
+    }
 
     public void connected(Connection c) {
 
@@ -38,6 +47,8 @@ public class ClientListener extends Listener {
         //Received a notification that the game has started.
         else if(o instanceof Packets.GameStarter){
             System.out.println("The host has started the game.");
+            gameStarted = true;
+
         }
 
         //Received a notification that the game has ended.
@@ -62,6 +73,12 @@ public class ClientListener extends Listener {
         //Receives a chat message.
         else if (o instanceof Packets.ChatMessage){
             System.out.println(((Packets.ChatMessage) o).message);
+            if(!gameStarted){
+                LobbyController.displayChatMessage(((Packets.ChatMessage) o).message);
+            }
+
+
+
         }
 
     }

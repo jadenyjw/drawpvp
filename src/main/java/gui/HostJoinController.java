@@ -36,6 +36,7 @@ public class HostJoinController {
     public static void displayGameJoinFailed(){
 
     }
+
     public static void displayGameJoinSucceeded(){
         try {
             Stage stage = Main.primaryStage;
