@@ -9,20 +9,20 @@ import javafx.fxml.FXML;
  * Created by jaden on 5/10/17.
  */
 public class LobbyController {
-    @FXML
-    private static JFXTextArea chatLog;
-    @FXML
-    private JFXTextField chat;
 
-    public static void displayChatMessage(String message){
-        System.out.println(message);
-        chatLog.appendText(message);
+    @FXML
+    protected JFXTextArea chatArea;
+    @FXML
+    protected JFXTextField chat;
+
+    public void displayChatMessage(String message){
+        chatArea.appendText(message);
+        System.out.println(chatArea.getText());
     }
-
+    
     @FXML
     public void onEnter(ActionEvent e){
         Main.client.sendChatMessage(chat.getText());
-
     }
 
 }

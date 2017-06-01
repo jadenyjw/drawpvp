@@ -49,9 +49,12 @@ public class ServerListener extends Listener {
                 Packets.JoinResponse response = new Packets.JoinResponse();
                 response.accepted = true;
                 c.sendTCP(response);
+
                 Packets.PlayerJoinedNotification notif = new Packets.PlayerJoinedNotification();
                 notif.username = ((Packets.JoinRequest) o).username;
                 sendToAllClients(notif);
+
+
             }
             else{
                 Packets.JoinResponse response = new Packets.JoinResponse();
@@ -90,12 +93,14 @@ public class ServerListener extends Listener {
             Packets.ChatMessage newMessage = new Packets.ChatMessage();
             newMessage.message = username + ": " + msg;
             sendToAllClients(newMessage);
+
         }
 
     }
 
     //Broadcast a message to all of the clients.
     public void sendToAllClients(Object o){
+
         for(int x = 0; x < pairs.size(); x++){
             pairs.get(x).connection.sendTCP(o);
         }

@@ -30,7 +30,7 @@
          <children>
             <ScrollPane hbarPolicy="NEVER" prefHeight="250.0" prefWidth="430.0">
                <content>
-                  <JFXTextArea fx:id="chatLog" editable="false" prefHeight="250.0" prefWidth="430.0">
+                  <JFXTextArea fx:id="chatArea" editable="false" prefHeight="250.0" prefWidth="430.0">
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
