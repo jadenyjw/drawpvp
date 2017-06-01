@@ -16,13 +16,13 @@ public class LobbyController {
     protected JFXTextField chat;
 
     public void displayChatMessage(String message){
-        chatArea.appendText(message);
-        System.out.println(chatArea.getText());
+        chatArea.appendText(message + '\n');
     }
     
     @FXML
     public void onEnter(ActionEvent e){
         Main.client.sendChatMessage(chat.getText());
+        chat.setText("");
     }
 
 }

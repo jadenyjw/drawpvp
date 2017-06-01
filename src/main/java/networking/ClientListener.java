@@ -4,6 +4,7 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import gui.HostJoinController;
 import gui.LobbyController;
+import gui.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import utilities.DataManipulation;
@@ -75,23 +76,8 @@ public class ClientListener extends Listener {
 
         //Receives a chat message.
         else if (o instanceof Packets.ChatMessage){
-
-            try{
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/lobby.fxml"));
-                loader.load();
-                LobbyController controller = loader.getController();
-                if(!gameStarted){
-                    controller.displayChatMessage(((Packets.ChatMessage) o).message);
-                }
-            }
-            catch(IOException e){
-                e.printStackTrace();
-            }
-
-
-
-
-
+            System.out.println(Main.lobby);
+            Main.lobby.displayChatMessage(((Packets.ChatMessage) o).message);
 
         }
 

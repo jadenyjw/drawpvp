@@ -18,6 +18,8 @@ public class Main extends Application {
     public static DServer server;
     public static DClient client;
 
+    public static LobbyController lobby;
+
     public void start(Stage primaryStage) throws IOException{
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("DrawPVP");

@@ -39,9 +39,10 @@ public class HostJoinController {
 
     public static void displayGameJoinSucceeded(){
         try {
-            Stage stage = Main.primaryStage;
-            Parent pane = FXMLLoader.load(Main.class.getResource("/views/lobby.fxml"));
-            stage.getScene().setRoot(pane);
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/lobby.fxml"));
+            Parent root = loader.load();
+            Main.lobby  = loader.getController();
+            Main.primaryStage.getScene().setRoot(root);
         }
         catch(IOException e){
             e.printStackTrace();
