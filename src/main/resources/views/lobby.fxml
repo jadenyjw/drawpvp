@@ -7,13 +7,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="gui.LobbyController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LobbyController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -25,30 +24,12 @@
          </children>
       </HBox>
    </top>
-   <center>
-      <VBox prefHeight="250.0" prefWidth="430.0" BorderPane.alignment="CENTER">
-         <children>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="250.0" prefWidth="430.0">
-               <content>
-                  <JFXTextArea fx:id="chatArea" editable="false" prefHeight="250.0" prefWidth="430.0">
-                     <padding>
-                        <Insets bottom="10.0" top="10.0" />
-                     </padding>
-                  </JFXTextArea>
-               </content>
-            </ScrollPane>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="10.0" />
-         </BorderPane.margin>
-      </VBox>
-   </center>
    <bottom>
       <VBox prefHeight="54.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
                <buttons>
-                  <JFXTextField fx:id="chat" prefHeight="25.0" prefWidth="692.0" promptText="Chat here..." onAction="#onEnter" />
+                  <JFXTextField fx:id="chat" onAction="#onEnter" prefHeight="25.0" prefWidth="692.0" promptText="Chat here..." />
                   <JFXButton alignment="CENTER" defaultButton="true" maxWidth="40.0" prefWidth="40.0" ripplerFill="#941818" text="Enter" />
                </buttons>
             </ButtonBar>
@@ -65,4 +46,11 @@
          </BorderPane.margin>
       </JFXListView>
    </right>
+   <center>
+      <JFXTextArea fx:id="chatArea" editable="false" focusColor="#cb26d3" prefHeight="160.0" prefWidth="306.0" unFocusColor="#ffffff00" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </JFXTextArea>
+   </center>
 </BorderPane>
