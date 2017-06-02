@@ -29,13 +29,16 @@ public class ServerListener extends Listener {
             if(pairs.get(x).connection.equals(c)){
                 game.playerLeave(pairs.get(x).player);
                 Packets.PlayerUpdate notif = new Packets.PlayerUpdate();
-                String[] players = new String[pairs.size() - 1];
+                notif.players = new String[pairs.size() - 1];
+                ArrayList<String> players = new ArrayList<String>();
+
                 for(int y = 0; y < pairs.size(); y++){
-                    if(y != x){
-                        players[y] = pairs.get(x).player.getUsername();
+                    if(!pairs.get(x).player.getUsername().equals(pairs.get(y).player.getUsername())){
+                        players.add(pairs.get(y).player.getUsername());
                     }
                 }
-                notif.players = players;
+                notif.players = players.toArray(new String[players.size()]);
+
                 pairs.remove(x);
                 sendToAllClients(notif);
                 break;
