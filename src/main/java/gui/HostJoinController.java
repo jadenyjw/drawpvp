@@ -25,13 +25,16 @@ public class HostJoinController {
 
     @FXML
     protected void hostGame() throws IOException{
+        Main.isHost = true;
         Main.client = new DClient(InetAddress.getLocalHost().getHostAddress(), username.getText());
         Main.client.joinGame();
     }
     @FXML
     protected void joinGame() throws IOException{
+        Main.isHost = false;
         Main.client = new DClient(ip.getText(), username.getText());
         Main.client.joinGame();
+
     }
     public static void displayGameJoinFailed(){
 
@@ -41,7 +44,7 @@ public class HostJoinController {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/lobby.fxml"));
             Parent root = loader.load();
-            Main.lobby  = loader.getController();
+            Main.lobby = loader.getController();
             Main.primaryStage.getScene().setRoot(root);
         }
         catch(IOException e){

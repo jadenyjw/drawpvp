@@ -21,6 +21,8 @@ public class Main extends Application {
     public static LobbyController lobby;
     public static GameController game;
 
+    public static boolean isHost = false;
+
     public void start(Stage primaryStage) throws IOException{
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("DrawPVP");

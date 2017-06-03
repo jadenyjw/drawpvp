@@ -8,9 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class LobbyController {
+public class LobbyController implements Initializable{
 
 
     @FXML
@@ -56,5 +60,9 @@ public class LobbyController {
     }
 
 
-
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(Main.isHost){
+           
+        }
+    }
 }
