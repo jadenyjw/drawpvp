@@ -22,6 +22,8 @@ public class HostJoinController {
     private JFXTextField username;
     @FXML
     private JFXTextField ip;
+    @FXML
+    private JFXButton backButton;
 
     @FXML
     protected void hostGame() throws IOException{
@@ -36,7 +38,23 @@ public class HostJoinController {
         Main.client.joinGame();
 
     }
+    @FXML
+    protected void goBack() {
+        if(Main.server != null){
+            Main.server.close();
+            Main.server = null;
+        }
+        try{
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/main_menu.fxml"));
+            Parent root = loader.load();
+            Main.primaryStage.getScene().setRoot(root);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     public static void displayGameJoinFailed(){
+
 
     }
 
@@ -51,6 +69,8 @@ public class HostJoinController {
             e.printStackTrace();
         }
     }
+
+
 
 
 }

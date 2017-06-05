@@ -35,7 +35,7 @@
       </VBox>
       <HBox alignment="CENTER" layoutX="104.0" layoutY="279.0" prefHeight="100.0" prefWidth="394.0">
          <children>
-            <JFXButton prefHeight="45.0" prefWidth="89.0" text="Back">
+            <JFXButton fx:id="backButton" onAction="#goBack" prefHeight="45.0" prefWidth="89.0" text="Back">
                <font>
                   <Font size="20.0" />
                </font>
