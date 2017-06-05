@@ -27,16 +27,20 @@ public class HostJoinController {
 
     @FXML
     protected void hostGame() throws IOException{
-        Main.isHost = true;
-        Main.client = new DClient(InetAddress.getLocalHost().getHostAddress(), username.getText());
-        Main.client.joinGame();
+        if(username.getText().length() > 0 && username.getText().length() <= 20) {
+            Main.isHost = true;
+            Main.client = new DClient(InetAddress.getLocalHost().getHostAddress(), username.getText());
+            Main.client.joinGame();
+        }
     }
     @FXML
     protected void joinGame() throws IOException{
-        Main.isHost = false;
-        Main.client = new DClient(ip.getText(), username.getText());
-        Main.client.joinGame();
 
+        if(username.getText().length() > 0 && username.getText().length() <= 20) {
+            Main.isHost = false;
+            Main.client = new DClient(ip.getText(), username.getText());
+            Main.client.joinGame();
+        }
     }
     @FXML
     protected void goBack() {

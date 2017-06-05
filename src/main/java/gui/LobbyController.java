@@ -78,7 +78,7 @@ public class LobbyController implements Initializable{
                         InetAddress addr = a.nextElement();
                         System.out.println(addr);
                         if(addr.isSiteLocalAddress()){
-                            chatArea.appendText("Detected IP address of: " + addr.getHostAddress());
+                            chatArea.appendText("Detected IP address of: " + addr.getHostAddress() + "\n");
                         }
 
                     }
