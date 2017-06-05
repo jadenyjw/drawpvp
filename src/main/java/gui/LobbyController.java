@@ -50,19 +50,22 @@ public class LobbyController implements Initializable{
     }
     @FXML
     public void onEnter(){
-        Main.client.sendChatMessage(chat.getText());
-        Platform.runLater(new Runnable() {
-            public void run() {
-                chat.setText("");
-            }
-        });
 
+        if(!(chat.getText().trim().equals(""))){
+            Main.client.sendChatMessage(chat.getText());
+            Platform.runLater(new Runnable() {
+                public void run() {
+                    chat.setText("");
+                }
+            });
+
+        }
     }
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(Main.isHost){
-           
+
         }
     }
 }

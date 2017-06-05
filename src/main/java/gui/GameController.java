@@ -1,13 +1,17 @@
 package gui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Created by jaden on 5/10/17.
  */
-public class GameController {
+public class GameController implements Initializable{
 
     @FXML protected Canvas surface;
     GraphicsContext gc = surface.getGraphicsContext2D();
@@ -17,4 +21,7 @@ public class GameController {
     }
 
 
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
