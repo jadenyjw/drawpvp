@@ -9,7 +9,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-import java.net.URL;
+import java.net.*;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 
@@ -64,6 +66,27 @@ public class LobbyController implements Initializable{
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(Main.isHost){
+            try{
+                Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+                for (; interfaces.hasMoreElements();)
+                {
+                    NetworkInterface e = interfaces.nextElement();
+
+                    Enumeration<InetAddress> a = e.getInetAddresses();
+                    for (; a.hasMoreElements();)
+                    {
+                        InetAddress addr = a.nextElement();
+                        System.out.println(addr);
+                        if(addr.isSiteLocalAddress()){
+                            chatArea.appendText("Detected IP address of: " + addr.getHostAddress());
+                        }
+
+                    }
+                }
+            }
+            catch(SocketException e){
+                e.printStackTrace();
+            }
 
         }
     }
