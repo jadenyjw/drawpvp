@@ -67,10 +67,10 @@ public class ClientListener extends Listener {
                 System.out.println((x+1) + ". " + players[x]);
             }
         }
-
         //Receives a new drawing assignment from the server.
         else if(o instanceof Packets.Drawing){
             System.out.println("You have to draw a " + DataManipulation.idToString(((Packets.Drawing) o).id));
+            Main.game.setDrawing(((Packets.Drawing) o).id);
         }
 
         //Acknowledges that all drawings have been completed.
@@ -84,6 +84,7 @@ public class ClientListener extends Listener {
                 Main.lobby.displayChatMessage(((Packets.ChatMessage) o).message);
             }
         }
+
 
     }
 
