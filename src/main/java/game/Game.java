@@ -48,9 +48,16 @@ public class Game {
 
         listener.sendToAllClients(new Packets.GameStarter());
         for(int x = 0; x < listener.pairs.size(); x++){
+            Packets.PlayerUpdate notif = new Packets.PlayerUpdate();
+            String[] players = new String[listener.pairs.size()];
+            for(int y = 0; y < listener.pairs.size(); y++){
+                players[x] = listener.pairs.get(y).player.getUsername();
+            }
+            notif.players = players;
             Packets.Drawing drawing = new Packets.Drawing();
             drawing.id = drawings.get(listener.pairs.get(x).player.getDrawingNum());
             listener.pairs.get(x).connection.sendTCP(drawing);
+            listener.pairs.get(x).connection.sendTCP(notif);
         }
 
     }

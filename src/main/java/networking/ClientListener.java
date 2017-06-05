@@ -36,6 +36,9 @@ public class ClientListener extends Listener {
             if(!gameStarted){
                 Main.lobby.playersUpdate(((Packets.PlayerUpdate) o).players);
             }
+            else{
+                Main.game.playersUpdate(((Packets.PlayerUpdate) o).players);
+            }
         }
 
 

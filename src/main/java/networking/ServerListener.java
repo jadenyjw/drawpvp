@@ -78,6 +78,7 @@ public class ServerListener extends Listener {
         //Received a call to initiate the game.
         else if(o instanceof Packets.GameStarter){
             game.startGame();
+
         }
 
         //Receives a correct drawing acknowledgement from the client.

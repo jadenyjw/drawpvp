@@ -1,7 +1,9 @@
 package gui;
 
-import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.*;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -42,6 +44,25 @@ public class GameController implements Initializable{
         gc.clearRect(0, 0, surface.getWidth(), surface.getHeight());
     }
 
+    @FXML
+    protected JFXTextArea chatArea;
+    @FXML
+    protected JFXTextField chat;
+    @FXML
+    protected JFXListView<String> playersView;
+
+
+    ObservableList<String> items = FXCollections.observableArrayList();
+
+    public void displayChatMessage(final String message){
+        Platform.runLater(new Runnable() {
+            public void run() {
+                chatArea.appendText(message + '\n');
+            }
+        });
+
+    }
+
     public void judge() {
         Platform.runLater(new Runnable() {
             public void run() {
@@ -63,6 +84,19 @@ public class GameController implements Initializable{
 
     public void setDrawing(int n){
         currentDrawing = n;
+    }
+
+    public void playersUpdate(final String[] players){
+
+        Platform.runLater(new Runnable() {
+            public void run() {
+                items.clear();
+                for(String s : players){
+                    items.add(s);
+                }
+                playersView.setItems(items);
+            }
+        });
     }
 
     public BufferedImage resize(BufferedImage img, int newW, int newH) {
