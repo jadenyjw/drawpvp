@@ -1,9 +1,6 @@
 package gui;
 
 import com.jfoenix.controls.JFXSlider;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
@@ -12,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.awt.*;
@@ -23,7 +22,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import ai.*;
-import javafx.util.Duration;
 import org.deeplearning4j.nn.modelimport.keras.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationException;
 
@@ -95,6 +93,15 @@ public class GameController implements Initializable{
 
                     }
                 });
+        surface.getParent().addEventHandler(KeyEvent.KEY_PRESSED,
+                new EventHandler<KeyEvent>() {
+                    public void handle(KeyEvent e) {
+                        if(e.getCode() == KeyCode.C) {
+                            clear();
+                        }
+
+                    }
+                });
         try{
             net = new NeuralNet();
         } catch (InvalidKerasConfigurationException e) {
@@ -107,24 +114,26 @@ public class GameController implements Initializable{
 
         new Timer().schedule(
                 new TimerTask() {
-
                     @Override
                     public void run() {
-                        judge();
+                        if(currentDrawing != -1){
+                            judge();
+                        }
                     }
-                }, 0, 3000);
+                }, 0, 4000);
 
         new Timer().schedule(
                 new TimerTask() {
 
                     @Override
                     public void run() {
-                        if(seconds == 60){
-                            Main.client.sendCorrectDrawing();
-                            seconds = 0;
-                        }
-                        else{
-                            seconds++;
+                        if(currentDrawing != -1) {
+                            if (seconds == 60) {
+                                Main.client.sendCorrectDrawing();
+                                seconds = 0;
+                            } else {
+                                seconds++;
+                            }
                         }
                     }
                 }, 0, 1000);
