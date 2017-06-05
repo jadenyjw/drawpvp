@@ -1,5 +1,6 @@
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -7,8 +8,11 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 
+import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -24,6 +28,8 @@ public class LobbyController implements Initializable{
     protected JFXTextField chat;
     @FXML
     protected JFXListView<String> playersView;
+    @FXML
+    protected JFXButton startButton;
 
     ObservableList<String> items = FXCollections.observableArrayList();
 
@@ -47,7 +53,23 @@ public class LobbyController implements Initializable{
                 playersView.setItems(items);
             }
         });
+    }
 
+    public void initGame(){
+        try{
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/draw_room.fxml"));
+            Parent root = loader.load();
+            Main.game = loader.getController();
+            Main.primaryStage.getScene().setRoot(root);
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void startGame(){
+        Main.client.startGame();
     }
     @FXML
     public void onEnter(){
@@ -76,11 +98,10 @@ public class LobbyController implements Initializable{
                     for (; a.hasMoreElements();)
                     {
                         InetAddress addr = a.nextElement();
-                        System.out.println(addr);
                         if(addr.isSiteLocalAddress()){
                             chatArea.appendText("Detected IP address of: " + addr.getHostAddress() + "\n");
+                            break;
                         }
-
                     }
                 }
             }
@@ -88,6 +109,9 @@ public class LobbyController implements Initializable{
                 e.printStackTrace();
             }
 
+        }
+        else{
+            startButton.setVisible(false);
         }
     }
 }

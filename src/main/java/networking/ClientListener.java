@@ -38,6 +38,7 @@ public class ClientListener extends Listener {
             }
         }
 
+
         //Receives a response of the server whether or not joining was successful.
         else if(o instanceof Packets.JoinResponse){
             if(((Packets.JoinResponse)o).accepted){
@@ -54,6 +55,7 @@ public class ClientListener extends Listener {
         else if(o instanceof Packets.GameStarter){
             System.out.println("The host has started the game.");
             gameStarted = true;
+            Main.lobby.initGame();
 
         }
 

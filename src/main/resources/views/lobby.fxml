@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LobbyController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LobbyController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -30,7 +30,10 @@
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
                <buttons>
                   <JFXTextField fx:id="chat" onAction="#onEnter" prefHeight="25.0" prefWidth="692.0" promptText="Chat here..." />
-                  <JFXButton alignment="CENTER" defaultButton="true" maxWidth="40.0" prefWidth="40.0" ripplerFill="#941818" text="Enter" />
+                  <JFXButton fx:id="startButton" onAction="#startGame" alignment="CENTER" buttonType="RAISED" defaultButton="true" maxWidth="50.0" minWidth="63.0" prefHeight="35.0" prefWidth="40.0" ripplerFill="#941818" text="Start">
+                     <padding>
+                        <Insets left="10.0" right="20.0" />
+                     </padding></JFXButton>
                </buttons>
             </ButtonBar>
          </children>
