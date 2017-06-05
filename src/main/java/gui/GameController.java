@@ -37,6 +37,7 @@ public class GameController implements Initializable{
     protected GraphicsContext gc;
     protected NeuralNet net;
     protected int currentDrawing;
+    protected int seconds;
 
     @FXML
     public void clear(){
@@ -50,7 +51,8 @@ public class GameController implements Initializable{
                 BufferedImage bImage = SwingFXUtils.fromFXImage(img, null);
                 try {
                     if(net.checkDrawing(resize(bImage, 225, 225), currentDrawing)){
-                        System.out.println("Correct!");
+                        Main.client.sendCorrectDrawing();
+                        clear();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -110,6 +112,25 @@ public class GameController implements Initializable{
                     public void run() {
                         judge();
                     }
-                }, 0, 5000);
+                }, 0, 3000);
+
+        new Timer().schedule(
+                new TimerTask() {
+
+                    @Override
+                    public void run() {
+                        if(seconds == 60){
+                            Main.client.sendCorrectDrawing();
+                            seconds = 0;
+                        }
+                        else{
+                            seconds++;
+                        }
+                    }
+                }, 0, 1000);
+
+
     }
+
+
 }
