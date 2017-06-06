@@ -22,8 +22,7 @@ public class DataManipulation {
 
 		String drawing = null;
 		try{
-			ClassLoader classLoader = DataManipulation.class.getClassLoader();
-			File dictionary = new File(classLoader.getResource("text/dictionary.txt").getFile());
+			File dictionary = new File(DataManipulation.class.getResource("/text/dictionary.txt").getFile());
 			FileReader fr = new FileReader(dictionary);
 			BufferedReader br = new BufferedReader(fr);
 
