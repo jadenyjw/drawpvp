@@ -1,11 +1,9 @@
 package utilities;
 
+import gui.Main;
 import org.nd4j.linalg.api.ndarray.INDArray;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.FileReader;
-import java.io.BufferedReader;
+import java.io.*;
 
 
 public class DataManipulation {
@@ -22,14 +20,11 @@ public class DataManipulation {
 
 		String drawing = null;
 		try{
-			File dictionary = new File(DataManipulation.class.getResource("/text/dictionary.txt").getFile());
-			FileReader fr = new FileReader(dictionary);
-			BufferedReader br = new BufferedReader(fr);
-
+			InputStream is = Main.class.getResourceAsStream("/text/dictionary.txt");
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			for (int x = 0; x < n; x++){
 				br.readLine();
 			}
-
 			drawing = br.readLine();
 		}
 		catch (IOException e){
