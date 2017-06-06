@@ -115,6 +115,18 @@ public class GameController implements Initializable{
         slider.setMax(10);
         slider.setMin(1);
         gc = surface.getGraphicsContext2D();
+        surface.addEventHandler(MouseEvent.MOUSE_PRESSED,
+                new EventHandler<MouseEvent>() {
+                    public void handle(MouseEvent e) {
+                        if(e.isPrimaryButtonDown()){
+                            gc.fillOval(e.getX(), e.getY(), slider.getValue(), slider.getValue());
+                        }
+                        else if(e.isSecondaryButtonDown()){
+                            gc.clearRect(e.getX(), e.getY(), slider.getValue(), slider.getValue());
+                        }
+
+                    }
+                });
         surface.addEventHandler(MouseEvent.MOUSE_DRAGGED,
                 new EventHandler<MouseEvent>() {
                     public void handle(MouseEvent e) {
