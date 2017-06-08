@@ -13,9 +13,7 @@ public class Player{
         this.username = username;
     }
 
-    public int nextDrawing(){
-        return ++this.drawingNum;
-    }
+    public int nextDrawing(){return ++this.drawingNum;}
     public int getDrawingNum(){
         return drawingNum;
     }

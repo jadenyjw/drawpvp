@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuController">
+   <children>
+      <ImageView fitHeight="416.0" fitWidth="615.0" layoutY="-14.0">
+         <image>
+            <Image url="@../images/bg.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="399.0" layoutY="96.0">
+         <children>
+            <ImageView fitHeight="121.0" fitWidth="106.0" layoutX="144.0" layoutY="9.0">
+               <image>
+                  <Image url="@../images/Fancy-pants_big.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="290.0" fitWidth="432.0">
+               <image>
+                  <Image url="@../images/rawr.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <VBox layoutX="257.0" layoutY="135.0">
+         <children>
+            <JFXButton fx:id="newGameButton" alignment="CENTER" onAction="#hostLobbyScreen" ripplerFill="#1f8bff" text="New Game" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="hostGameButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#joinLobbyScreen" ripplerFill="#bf23b5" text="Join Game" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" graphicTextGap="0.0" prefHeight="57.0" prefWidth="98.0" ripplerFill="#1bbc20" text="Help" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+      </VBox>
+      <HBox layoutX="14.0" layoutY="9.0" prefHeight="109.0" prefWidth="275.0" />
+      <HBox layoutX="207.0" layoutY="305.0" prefHeight="85.0" prefWidth="200.0" />
+      <Pane layoutX="14.0" layoutY="107.0">
+         <children>
+            <ImageView fitHeight="228.0" fitWidth="228.0">
+               <image>
+                  <Image url="@../images/menu2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Label alignment="CENTER" layoutX="169.0" layoutY="9.0" prefHeight="110.0" prefWidth="277.0" text="Draw PVP" textAlignment="CENTER">
+         <font>
+            <Font name="Freestyle Script" size="62.0" />
+         </font>
+      </Label>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>
