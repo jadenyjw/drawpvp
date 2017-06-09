@@ -5,14 +5,13 @@
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LobbyController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LobbyController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -24,36 +23,36 @@
          </children>
       </HBox>
    </top>
-   <bottom>
-      <VBox prefHeight="54.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <ButtonBar prefHeight="40.0" prefWidth="200.0">
-               <buttons>
-                  <JFXTextField fx:id="chat" onAction="#onEnter" prefHeight="25.0" prefWidth="692.0" promptText="Chat here..." />
-                  <JFXButton fx:id="startButton" onAction="#startGame" alignment="CENTER" buttonType="RAISED" defaultButton="true" maxWidth="50.0" minWidth="63.0" prefHeight="35.0" prefWidth="40.0" ripplerFill="#941818" text="Start">
-                     <padding>
-                        <Insets left="10.0" right="20.0" />
-                     </padding></JFXButton>
-               </buttons>
-            </ButtonBar>
-         </children>
-      </VBox>
-   </bottom>
-   <left>
-      <VBox prefHeight="204.0" prefWidth="22.0" BorderPane.alignment="CENTER" />
-   </left>
    <right>
-      <JFXListView fx:id="playersView" prefHeight="210.0" prefWidth="118.0" BorderPane.alignment="CENTER">
+      <JFXListView fx:id="playersView" prefHeight="247.0" prefWidth="114.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="20.0" right="10.0" />
          </BorderPane.margin>
       </JFXListView>
    </right>
    <center>
-      <JFXTextArea fx:id="chatArea" editable="false" focusColor="#cb26d3" prefHeight="160.0" prefWidth="306.0" unFocusColor="#ffffff00" BorderPane.alignment="CENTER">
+      <JFXTextArea fx:id="chatArea" editable="false" focusColor="#cb26d3" prefHeight="246.0" prefWidth="423.0" unFocusColor="#ffffff00" BorderPane.alignment="CENTER">
          <padding>
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </JFXTextArea>
    </center>
+   <left>
+      <Region prefHeight="282.0" prefWidth="23.0" BorderPane.alignment="CENTER" />
+   </left>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="46.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Region prefHeight="46.0" prefWidth="39.0" HBox.hgrow="NEVER" />
+            <JFXTextField fx:id="chat" onAction="#onEnter" prefHeight="25.0" prefWidth="476.0" promptText="Chat here..." HBox.hgrow="ALWAYS" />
+            <Region prefHeight="46.0" prefWidth="47.0" HBox.hgrow="NEVER" />
+            <JFXButton fx:id="startButton" alignment="CENTER" buttonType="RAISED" maxWidth="50.0" minWidth="63.0" onAction="#startGame" prefHeight="35.0" prefWidth="40.0" ripplerFill="#941818" text="Start">
+               <padding>
+                  <Insets left="10.0" right="20.0" />
+               </padding>
+            </JFXButton>
+            <Region prefHeight="46.0" prefWidth="21.0" />
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>
