@@ -49,7 +49,7 @@ public class HostJoinController {
             Main.server = null;
         }
         try{
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/main_menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/main_menu2.fxml"));
             Parent root = loader.load();
             Main.primaryStage.getScene().setRoot(root);
         }

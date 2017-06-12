@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import networking.DClient;
 import networking.DServer;
@@ -14,7 +15,7 @@ import java.io.IOException;
 public class Main extends Application {
     public static Stage primaryStage;
     public static Scene primaryScene;
-    private AnchorPane mainLayout;
+    private BorderPane mainLayout;
     public static DServer server;
     public static DClient client;
 
@@ -38,7 +39,7 @@ public class Main extends Application {
     public void showMainMenu() throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/views/main_menu.fxml"));
+        loader.setLocation(Main.class.getResource("/views/main_menu2.fxml"));
         mainLayout = loader.load();
         primaryScene = new Scene(mainLayout);
         primaryStage.setScene(primaryScene);

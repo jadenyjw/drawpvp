@@ -11,10 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.*;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
 
@@ -58,7 +58,7 @@ public class LobbyController implements Initializable{
     public void initGame(){
         try{
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/draw_room.fxml"));
-            Parent root = loader.load();
+            Pane root = loader.load();
             Main.game = loader.getController();
             Main.primaryStage.getScene().setRoot(root);
         }
