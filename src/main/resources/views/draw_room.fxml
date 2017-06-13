@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../images/background.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../images/background.css" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
    <top>
       <HBox prefHeight="57.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -50,6 +50,17 @@
       </JFXListView>
    </right>
    <center>
-      <Canvas fx:id="surface" height="2000.0" width="2000.0" BorderPane.alignment="CENTER" />
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Canvas fx:id="surface" height="200.0" width="200.0" />
+         </children>
+      </VBox>
    </center>
+   <left>
+      <HBox prefHeight="300.0" prefWidth="19.0" BorderPane.alignment="CENTER">
+         <children>
+            <Region prefHeight="300.0" prefWidth="20.0" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+   </left>
 </BorderPane>
