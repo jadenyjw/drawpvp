@@ -24,6 +24,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import ai.*;
+import javafx.scene.layout.VBox;
 import org.deeplearning4j.nn.modelimport.keras.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationException;
 
@@ -33,6 +34,7 @@ import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationExce
 public class GameController implements Initializable{
 
     @FXML protected Canvas surface;
+    @FXML protected VBox canvasBox;
     @FXML protected JFXSlider slider;
     protected GraphicsContext gc;
     protected NeuralNet net;
@@ -115,6 +117,9 @@ public class GameController implements Initializable{
         slider.setMax(10);
         slider.setMin(1);
         gc = surface.getGraphicsContext2D();
+        surface.widthProperty().bind(canvasBox.widthProperty());
+        surface.heightProperty().bind(canvasBox.heightProperty());
+
         surface.addEventHandler(MouseEvent.MOUSE_PRESSED,
                 new EventHandler<MouseEvent>() {
                     public void handle(MouseEvent e) {
@@ -139,7 +144,7 @@ public class GameController implements Initializable{
 
                     }
                 });
-        surface.getParent().addEventHandler(KeyEvent.KEY_PRESSED,
+        surface.getParent().getParent().addEventHandler(KeyEvent.KEY_PRESSED,
                 new EventHandler<KeyEvent>() {
                     public void handle(KeyEvent e) {
                         if(e.getCode() == KeyCode.C) {
