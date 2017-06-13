@@ -1,6 +1,7 @@
 package game;
 
 
+import gui.Notification;
 import networking.Packets;
 import networking.ServerListener;
 
@@ -14,7 +15,6 @@ public class Game {
     protected boolean gameStarted = false; //False means still in lobby.
     protected static final int numDrawings = 5;
     protected ServerListener listener;
-    Notification alerts = new Notification();
 
     public Game(ServerListener listener){
         this.listener = listener;
@@ -46,8 +46,6 @@ public class Game {
     public void startGame(){
         this.gameStarted = true;
         System.out.println("Game has started.");
-        alerts.display("Welcome!","The game has started");
-
 
         listener.sendToAllClients(new Packets.GameStarter());
         for(int x = 0; x < listener.pairs.size(); x++){

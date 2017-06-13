@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -30,6 +29,8 @@ public class LobbyController implements Initializable{
     protected JFXListView<String> playersView;
     @FXML
     protected JFXButton startButton;
+    Notification alerts = new Notification();
+
 
     ObservableList<String> items = FXCollections.observableArrayList();
 
@@ -61,6 +62,13 @@ public class LobbyController implements Initializable{
             Pane root = loader.load();
             Main.game = loader.getController();
             Main.primaryStage.getScene().setRoot(root);
+            Platform.runLater(new Runnable() {
+                public void run() {
+                    alerts.display("Welcome!","The game has started");
+                }
+            });
+
+
         }
         catch(IOException e){
             e.printStackTrace();

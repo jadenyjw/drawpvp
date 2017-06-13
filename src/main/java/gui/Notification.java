@@ -1,4 +1,4 @@
-package game;
+package gui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,8 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import javax.swing.*;
 
 /**
  * Created by ll on 2017-06-12.

@@ -60,6 +60,7 @@ public class ClientListener extends Listener {
             gameStarted = true;
             Main.lobby.initGame();
 
+
         }
 
         //Received a notification that the game has ended.
