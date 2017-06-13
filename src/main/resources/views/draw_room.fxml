@@ -50,7 +50,7 @@
       </JFXListView>
    </right>
    <center>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox fx:id="canvaxBox" BorderPane.alignment="CENTER">
          <children>
             <Canvas fx:id="surface" height="200.0" width="200.0" />
          </children>
