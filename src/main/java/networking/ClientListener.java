@@ -46,7 +46,7 @@ public class ClientListener extends Listener {
         else if(o instanceof Packets.JoinResponse){
             if(((Packets.JoinResponse)o).accepted){
                 System.out.println("Client successfully joined.");
-                Main.lobby.showlobbyMessage("Someone joined","yay");
+
                 HostJoinController.displayGameJoinSucceeded();
             }
             else{

@@ -54,27 +54,34 @@ public class LobbyController implements Initializable{
 
       Platform.runLater(new Runnable() {
             public void run() {
+                int i = items.size();
                 items.clear();
+
                 for(String s : players){
                     items.add(s);
                 }
                 playersView.setItems(items);
+                if(items.size() > i){
+                    chatArea.appendText("A new player has joined the game.\n");
+                }
+                else{
+                    chatArea.appendText("A player has left the game.\n");
+                }
             }
         });
     }
 
     public void initGame(){
         try{
+            Platform.runLater(new Runnable() {
+                public void run() {
+                    chatArea.appendText("The host has started the game. Please wait.\n");
+                }
+            });
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/draw_room.fxml"));
             Pane root = loader.load();
             Main.game = loader.getController();
             Main.primaryStage.getScene().setRoot(root);
-            Platform.runLater(new Runnable() {
-                public void run() {
-                    lobbyAlerts.display("Welcome!","The game has started");
-                }
-            });
-
 
         }
         catch(IOException e){
