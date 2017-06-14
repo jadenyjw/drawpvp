@@ -138,10 +138,16 @@ public class GameController implements Initializable{
 
                     @Override
                     public void handle(MouseEvent event) {
-                        gc.setLineWidth(slider.getValue());
-                        gc.beginPath();
-                        gc.moveTo(event.getX(), event.getY());
-                        gc.stroke();
+                        if(event.isPrimaryButtonDown()){
+                            gc.setLineWidth(slider.getValue());
+                            gc.beginPath();
+                            gc.moveTo(event.getX(), event.getY());
+                            gc.stroke();
+                        }
+                        else if(event.isSecondaryButtonDown()){
+                            gc.clearRect(event.getX(), event.getY(), slider.getValue(), slider.getValue());
+                        }
+
 
                     }
                 });
@@ -151,19 +157,16 @@ public class GameController implements Initializable{
 
                     @Override
                     public void handle(MouseEvent event) {
-                        gc.lineTo(event.getX(), event.getY());
-                        gc.stroke();
+                        if(event.isPrimaryButtonDown()) {
+                            gc.lineTo(event.getX(), event.getY());
+                            gc.stroke();
+                        }
+                        else if (event.isSecondaryButtonDown()){
+                            gc.clearRect(event.getX(), event.getY(), slider.getValue(), slider.getValue());
+                        }
                     }
                 });
 
-        surface.addEventHandler(MouseEvent.MOUSE_RELEASED,
-                new EventHandler<MouseEvent>(){
-
-                    @Override
-                    public void handle(MouseEvent event) {
-
-                    }
-                });
 
         surface.getParent().getParent().addEventHandler(KeyEvent.KEY_PRESSED,
                 new EventHandler<KeyEvent>() {
