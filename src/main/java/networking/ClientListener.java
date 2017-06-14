@@ -3,13 +3,12 @@ package networking;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import gui.HostJoinController;
-import gui.LobbyController;
+
 import gui.Main;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+
 import utilities.DataManipulation;
 
-import java.io.IOException;
+
 
 public class ClientListener extends Listener {
 
@@ -64,10 +63,11 @@ public class ClientListener extends Listener {
 
         //Received a notification that the game has ended.
         else if(o instanceof Packets.GameEnder){
+
             System.out.println("The game has ended. These are the standings:");
-
+            gameStarted = false;
             String[] players = ((Packets.GameEnder) o).players;
-
+            Main.game.goBackToLobby();
             Main.game.showAlert(players);
             for(int x = 0; x < players.length; x++){
                 System.out.println((x+1) + ". " + players[x]);
@@ -85,6 +85,7 @@ public class ClientListener extends Listener {
         else if(o instanceof Packets.DrawingsCompleted){
             System.out.println("You are done all drawings.");
             Main.game.showMessage("Done!","You are done all drawings");
+            Main.game.setDrawing(-1);
         }
 
         //Receives a chat message.
