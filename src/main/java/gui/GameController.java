@@ -27,7 +27,7 @@ import ai.*;
 import javafx.scene.layout.VBox;
 import org.deeplearning4j.nn.modelimport.keras.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationException;
-
+import javafx.animation.AnimationTimer;
 /**
  * Created by jaden on 5/10/17.
  */
@@ -40,6 +40,14 @@ public class GameController implements Initializable{
     protected NeuralNet net;
     protected int currentDrawing;
     protected int seconds;
+    public Notification drawingAlerts = new Notification();
+
+    public void showMessage(String title, String message){
+        Platform.runLater(new Runnable() {
+        public void run() {
+            drawingAlerts.display(title,message);
+        }
+    });}
 
     @FXML
     public void clear(){
@@ -127,7 +135,7 @@ public class GameController implements Initializable{
                             gc.fillOval(e.getX(), e.getY(), slider.getValue(), slider.getValue());
                         }
                         else if(e.isSecondaryButtonDown()){
-                            gc.clearRect(e.getX(), e.getY(), slider.getValue(), slider.getValue());
+                            gc.clearRect(e.getX(), e.getY(), slider.getValue()*2, slider.getValue()*2);
                         }
 
                     }
@@ -144,6 +152,7 @@ public class GameController implements Initializable{
 
                     }
                 });
+
         surface.getParent().getParent().addEventHandler(KeyEvent.KEY_PRESSED,
                 new EventHandler<KeyEvent>() {
                     public void handle(KeyEvent e) {

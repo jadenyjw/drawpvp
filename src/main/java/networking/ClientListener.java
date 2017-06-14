@@ -46,6 +46,7 @@ public class ClientListener extends Listener {
         else if(o instanceof Packets.JoinResponse){
             if(((Packets.JoinResponse)o).accepted){
                 System.out.println("Client successfully joined.");
+                Main.lobby.showlobbyMessage("Someone joined","yay");
                 HostJoinController.displayGameJoinSucceeded();
             }
             else{
@@ -74,6 +75,7 @@ public class ClientListener extends Listener {
         //Receives a new drawing assignment from the server.
         else if(o instanceof Packets.Drawing){
             System.out.println("You have to draw a " + DataManipulation.idToString(((Packets.Drawing) o).id));
+            Main.game.showMessage("next task","You have to draw a " + DataManipulation.idToString(((Packets.Drawing) o).id));
             Main.game.setDrawing(((Packets.Drawing) o).id);
         }
 

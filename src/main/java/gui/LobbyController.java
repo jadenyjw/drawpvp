@@ -29,7 +29,14 @@ public class LobbyController implements Initializable{
     protected JFXListView<String> playersView;
     @FXML
     protected JFXButton startButton;
-    Notification alerts = new Notification();
+    public Notification lobbyAlerts = new Notification();
+
+    public void showlobbyMessage(String title, String message){
+        Platform.runLater(new Runnable() {
+            public void run() {
+                lobbyAlerts.display(title,message);
+            }
+        });}
 
 
     ObservableList<String> items = FXCollections.observableArrayList();
@@ -64,7 +71,7 @@ public class LobbyController implements Initializable{
             Main.primaryStage.getScene().setRoot(root);
             Platform.runLater(new Runnable() {
                 public void run() {
-                    alerts.display("Welcome!","The game has started");
+                    lobbyAlerts.display("Welcome!","The game has started");
                 }
             });
 

@@ -1,9 +1,12 @@
 package game;
 
 
+import gui.Main;
 import gui.Notification;
+import javafx.application.Platform;
 import networking.Packets;
 import networking.ServerListener;
+import gui.GameController;
 
 import java.util.*;
 
@@ -16,9 +19,11 @@ public class Game {
     protected static final int numDrawings = 5;
     protected ServerListener listener;
 
+
     public Game(ServerListener listener){
         this.listener = listener;
         generateDrawings();
+
     }
 
     public ArrayList<Integer> getDrawings(){
@@ -46,7 +51,7 @@ public class Game {
     public void startGame(){
         this.gameStarted = true;
         System.out.println("Game has started.");
-
+        //lobbyAlerts.display("Start","The game has started");
         listener.sendToAllClients(new Packets.GameStarter());
         for(int x = 0; x < listener.pairs.size(); x++){
             Packets.PlayerUpdate notif = new Packets.PlayerUpdate();
@@ -110,6 +115,7 @@ public class Game {
         players.remove(player);
         finishedPlayers.remove(player);
         System.out.println(player.username + " has left the game.");
+        //Main.game.showMessage("Player left",player.username + " has left the game.");
     }
 
     public boolean gameStarted(){
