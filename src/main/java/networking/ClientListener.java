@@ -75,6 +75,7 @@ public class ClientListener extends Listener {
         else if(o instanceof Packets.Drawing){
             System.out.println("You have to draw a " + DataManipulation.idToString(((Packets.Drawing) o).id));
             Main.game.setDrawing(((Packets.Drawing) o).id);
+
         }
 
         //Acknowledges that all drawings have been completed.
