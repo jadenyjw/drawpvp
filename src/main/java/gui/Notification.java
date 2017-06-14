@@ -43,5 +43,23 @@ public class Notification {
 
     }
 
+    public void help(){
+        window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setMinWidth(300);
 
+        Label label = new Label();
+        label.setText("Drawing controls: \nLeft click to draw\nRight click to erase\nPress C to clear canvas");
+        closeButton = new JFXButton("OK");
+        closeButton.setOnAction(e -> window.close());
+
+        VBox layout = new VBox(2);
+        layout.getChildren().addAll(label,closeButton);
+        layout.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.showAndWait();
+
+    }
 }
