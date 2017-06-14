@@ -19,7 +19,6 @@ public class NeuralNet{
 
 	protected MultiLayerNetwork graph;
 	protected ImageLoader loader;
-	protected Evaluation eval = new Evaluation(3);
 
 	//Constructs this object with a graph.
 	public NeuralNet() throws IOException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException{
