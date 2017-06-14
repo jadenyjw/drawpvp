@@ -77,6 +77,7 @@ public class ClientListener extends Listener {
             System.out.println("You have to draw a " + DataManipulation.idToString(((Packets.Drawing) o).id));
             Main.game.showMessage("next task","You have to draw a " + DataManipulation.idToString(((Packets.Drawing) o).id));
             Main.game.setDrawing(((Packets.Drawing) o).id);
+
         }
 
         //Acknowledges that all drawings have been completed.
