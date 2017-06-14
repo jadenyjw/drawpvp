@@ -41,14 +41,13 @@ public class GameController implements Initializable{
     protected NeuralNet net;
     protected int currentDrawing;
     protected int seconds;
-    public Notification drawingAlerts = new Notification();
     protected JFXSnackbar bar;
-    public Notification lobbyAlerts = new Notification();
+    public Notification gameAlerts = new Notification();
 
-    public void showAlert(String title, String message){
+    public void showAlert(String[] message){
         Platform.runLater(new Runnable() {
             public void run() {
-                lobbyAlerts.display(title,message);
+                gameAlerts.display(message);
             }
         });}
 
@@ -57,6 +56,8 @@ public class GameController implements Initializable{
         Platform.runLater(new Runnable() {
         public void run() {
             bar.show(message, 5000);
+
+
         }
     });}
 

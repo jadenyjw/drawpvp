@@ -18,15 +18,17 @@ public class Notification {
     Button closeButton;
     Stage window;
 
-    public void display (String title, String message)
+    public void display (String[] message)
     {
         window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle(title);
         window.setMinWidth(300);
 
         Label label = new Label();
-        label.setText(message);
+        label.setText("The game has finished. These are the standings:");
+        for(int x = 0; x < message.length; x++){
+            label.setText(label.getText() + '\n' + (x+1) + ". " + message[x] + '\n');
+        }
         closeButton = new Button("Okay");
         closeButton.setOnAction(e -> window.close());
 

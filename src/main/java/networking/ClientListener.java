@@ -67,8 +67,9 @@ public class ClientListener extends Listener {
         //Received a notification that the game has ended.
         else if(o instanceof Packets.GameEnder){
             System.out.println("The game has ended. These are the standings:");
-            Main.game.showAlert("Finished","Here are the standings for this game:");
+
             String[] players = ((Packets.GameEnder) o).players;
+            Main.game.showAlert(players);
             for(int x = 0; x < players.length; x++){
                 System.out.println((x+1) + ". " + players[x]);
             }

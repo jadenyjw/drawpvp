@@ -1,6 +1,7 @@
 package tests;
 
 import ai.*;
+import gui.Notification;
 import networking.DClient;
 import networking.DServer;
 import java.awt.image.BufferedImage;
@@ -10,9 +11,10 @@ import java.net.UnknownHostException;
 public class Tests {
 
     public static void main(String[] args) throws Exception{
-        testServer();
-        testClient();
+        //testServer();
+        //testClient();
         //testNeuralNet();
+
     }
 
     private static void testNeuralNet(){
@@ -25,6 +27,7 @@ public class Tests {
             e.printStackTrace();
         }
     }
+
     private static void testServer(){
         DServer server = new DServer();
     }
