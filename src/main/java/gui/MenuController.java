@@ -40,6 +40,6 @@ public class MenuController {
   }
   @FXML
   protected void showHelpScreen(){
-    notif.display(new String[] {"Drawing controls:" , "Left click to draw", "Right click to erase", "Press C to clear"});
+    notif.help();
   }
 }
