@@ -44,6 +44,15 @@ public class Game {
         for(int x = 0; x < listener.pairs.size(); x++){
             listener.game.playerJoin(listener.pairs.get(x).player);
         }
+        for(int x = 0; x < listener.pairs.size(); x++) {
+            Packets.PlayerUpdate notif = new Packets.PlayerUpdate();
+            String[] players = new String[listener.pairs.size()];
+            for (int y = 0; y < listener.pairs.size(); y++) {
+                players[x] = listener.pairs.get(y).player.getUsername();
+            }
+            notif.players = players;
+            listener.pairs.get(x).connection.sendTCP(notif);
+        }
 
     }
 

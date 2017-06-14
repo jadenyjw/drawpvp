@@ -48,6 +48,16 @@ public class ServerListener extends Listener {
 
     public void received(Connection c, Object o){
 
+        if(o instanceof Packets.RequestPlayers){
+            Packets.PlayerUpdate notif = new Packets.PlayerUpdate();
+            String[] players = new String[pairs.size()];
+            for(int x = 0; x < pairs.size(); x++){
+                players[x] = pairs.get(x).player.getUsername();
+            }
+            notif.players = players;
+            c.sendTCP(notif);
+        }
+
         //Receives a request to join the game.
         if(o instanceof Packets.JoinRequest) {
             //Responds depending on whether or not the game has started.

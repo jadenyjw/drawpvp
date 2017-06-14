@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -121,7 +122,7 @@ public class GameController implements Initializable{
         });
     }
 
-    public BufferedImage resize(BufferedImage img, int newW, int newH) {
+    private BufferedImage resize(BufferedImage img, int newW, int newH) {
         Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
         BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_RGB);
 
@@ -130,6 +131,21 @@ public class GameController implements Initializable{
         g2d.dispose();
 
         return dimg;
+    }
+
+    public void goBackToLobby(){
+        try{
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/lobby.fxml"));
+            Pane root = loader.load();
+            Main.lobby = loader.getController();
+            Main.primaryStage.getScene().setRoot(root);
+            Main.client.requestPlayers();
+
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -183,6 +199,9 @@ public class GameController implements Initializable{
                         if(e.getCode() == KeyCode.C) {
                             clear();
                         }
+                        else if(e.getCode() == KeyCode.D){
+                            Main.client.sendCorrectDrawing();
+                        }
 
                     }
                 });
@@ -222,8 +241,6 @@ public class GameController implements Initializable{
                         }
                     }
                 }, 0, 1000);
-
-
     }
 
 

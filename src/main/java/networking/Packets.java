@@ -36,6 +36,9 @@ public class Packets {
     public static class ChatMessage{
         String message;
     }
+    public static class RequestPlayers{
+
+    }
 
 
     public static void registerPackets(Kryo kryo){
@@ -49,6 +52,6 @@ public class Packets {
         kryo.register(GameEnder.class);
         kryo.register(String[].class);
         kryo.register(ChatMessage.class);
-
+        kryo.register(RequestPlayers.class);
     }
 }

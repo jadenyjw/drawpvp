@@ -60,8 +60,6 @@ public class ClientListener extends Listener {
             System.out.println("The host has started the game.");
             gameStarted = true;
             Main.lobby.initGame();
-
-
         }
 
         //Received a notification that the game has ended.
@@ -69,6 +67,7 @@ public class ClientListener extends Listener {
             System.out.println("The game has ended. These are the standings:");
 
             String[] players = ((Packets.GameEnder) o).players;
+
             Main.game.showAlert(players);
             for(int x = 0; x < players.length; x++){
                 System.out.println((x+1) + ". " + players[x]);

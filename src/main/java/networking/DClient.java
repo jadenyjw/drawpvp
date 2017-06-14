@@ -32,6 +32,11 @@ public class DClient {
         client.sendTCP(joinPacket);
     }
 
+    public void requestPlayers(){
+        Packets.RequestPlayers request = new Packets.RequestPlayers();
+        client.sendTCP(request);
+    }
+
     //Initiates a call to start the game.
     public void startGame(){
         Packets.GameStarter starter = new Packets.GameStarter();
