@@ -24,6 +24,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import ai.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.deeplearning4j.nn.modelimport.keras.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationException;
@@ -41,11 +42,13 @@ public class GameController implements Initializable{
     protected int currentDrawing;
     protected int seconds;
     public Notification drawingAlerts = new Notification();
+    JFXSnackbar bar;
+
 
     public void showMessage(String title, String message){
         Platform.runLater(new Runnable() {
         public void run() {
-            drawingAlerts.display(title,message);
+            bar.show(message, 5000);
         }
     });}
 
@@ -124,6 +127,8 @@ public class GameController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         slider.setMax(10);
         slider.setMin(1);
+        bar = new JFXSnackbar((Pane)canvasBox.getParent());
+
         gc = surface.getGraphicsContext2D();
         surface.widthProperty().bind(canvasBox.widthProperty());
         surface.heightProperty().bind(canvasBox.heightProperty());
@@ -147,7 +152,7 @@ public class GameController implements Initializable{
                             gc.fillOval(e.getX(), e.getY(), slider.getValue(), slider.getValue());
                         }
                         else if(e.isSecondaryButtonDown()){
-                            gc.clearRect(e.getX(), e.getY(), slider.getValue(), slider.getValue());
+                            gc.clearRect(e.getX(), e.getY(), slider.getValue()*2, slider.getValue());
                         }
 
                     }
@@ -190,6 +195,7 @@ public class GameController implements Initializable{
                         if(currentDrawing != -1) {
                             if (seconds == 60) {
                                 Main.client.sendCorrectDrawing();
+                                clear();
                                 seconds = 0;
                             } else {
                                 seconds++;

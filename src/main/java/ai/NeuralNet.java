@@ -38,6 +38,7 @@ public class NeuralNet{
 		return (top(prediction).get(0) == n || top(prediction).get(1) == n || top(prediction).get(2) == n);
 	}
 
+	//Helper method to determine the top 3 items in the list.
 	private ArrayList<Integer> top(INDArray prediction){
 		double top1 = 0;
 		int top1Index = 0;

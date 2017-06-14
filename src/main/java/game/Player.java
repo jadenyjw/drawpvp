@@ -1,8 +1,5 @@
 package game;
 
-import java.net.*;
-import java.io.*;
-import java.util.UUID;
 
 public class Player{
 
@@ -21,8 +18,6 @@ public class Player{
     public String getUsername(){
         return username;
     }
-
-
 
 }
 
