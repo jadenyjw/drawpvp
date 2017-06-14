@@ -31,7 +31,7 @@ public class LobbyController implements Initializable{
     protected JFXButton startButton;
     public Notification lobbyAlerts = new Notification();
 
-    public void showlobbyMessage(String title, String message){
+    public void showMessage(String title, String message){
         Platform.runLater(new Runnable() {
             public void run() {
                 lobbyAlerts.display(title,message);
