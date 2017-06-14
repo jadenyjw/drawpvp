@@ -23,6 +23,8 @@ public class MenuController {
   @FXML
   private JFXButton helpButton;
 
+  Notification notif = new Notification();
+
   @FXML
   protected void hostLobbyScreen(ActionEvent e) throws IOException{
     Stage stage = Main.primaryStage;
@@ -35,5 +37,9 @@ public class MenuController {
     Stage stage = Main.primaryStage;
     Parent pane = FXMLLoader.load(Main.class.getResource("/views/join_room2.fxml"));
     stage.getScene().setRoot(pane);
+  }
+  @FXML
+  protected void showHelpScreen(){
+    notif.display(new String[] {"Drawing controls:" , "Left click to draw", "Right click to erase", "Press C to clear"});
   }
 }

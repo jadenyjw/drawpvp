@@ -1,9 +1,6 @@
 package gui;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,6 +63,9 @@ public class LobbyController implements Initializable{
 
     public void initGame(){
         try{
+            JFXSpinner spinner = new JFXSpinner();
+
+
             Platform.runLater(new Runnable() {
                 public void run() {
                     chatArea.appendText("The host has started the game. Please wait.\n");

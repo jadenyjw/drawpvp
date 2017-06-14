@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -41,8 +42,11 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("/views/main_menu2.fxml"));
         mainLayout = loader.load();
+
         primaryScene = new Scene(mainLayout);
+
         primaryStage.setScene(primaryScene);
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/images/icon.png")));
         primaryStage.show();
 
 

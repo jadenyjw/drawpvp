@@ -1,5 +1,6 @@
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -29,7 +30,7 @@ public class Notification {
         for(int x = 0; x < message.length; x++){
             label.setText(label.getText() + '\n' + (x+1) + ". " + message[x] + '\n');
         }
-        closeButton = new Button("Okay");
+        closeButton = new JFXButton("OK");
         closeButton.setOnAction(e -> window.close());
 
         VBox layout = new VBox(2);
