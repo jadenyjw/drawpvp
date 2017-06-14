@@ -28,7 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.deeplearning4j.nn.modelimport.keras.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationException;
-import javafx.animation.AnimationTimer;
+
 /**
  * Created by jaden on 5/10/17.
  */
@@ -42,7 +42,7 @@ public class GameController implements Initializable{
     protected int currentDrawing;
     protected int seconds;
     public Notification drawingAlerts = new Notification();
-    JFXSnackbar bar;
+    protected JFXSnackbar bar;
 
 
     public void showMessage(String title, String message){
@@ -134,26 +134,33 @@ public class GameController implements Initializable{
         surface.heightProperty().bind(canvasBox.heightProperty());
 
         surface.addEventHandler(MouseEvent.MOUSE_PRESSED,
-                new EventHandler<MouseEvent>() {
-                    public void handle(MouseEvent e) {
-                        if(e.isPrimaryButtonDown()){
-                            gc.fillOval(e.getX(), e.getY(), slider.getValue(), slider.getValue());
-                        }
-                        else if(e.isSecondaryButtonDown()){
-                            gc.clearRect(e.getX(), e.getY(), slider.getValue()*2, slider.getValue()*2);
-                        }
+                new EventHandler<MouseEvent>(){
+
+                    @Override
+                    public void handle(MouseEvent event) {
+                        gc.setLineWidth(slider.getValue());
+                        gc.beginPath();
+                        gc.moveTo(event.getX(), event.getY());
+                        gc.stroke();
 
                     }
                 });
+
         surface.addEventHandler(MouseEvent.MOUSE_DRAGGED,
-                new EventHandler<MouseEvent>() {
-                    public void handle(MouseEvent e) {
-                        if(e.isPrimaryButtonDown()){
-                            gc.fillOval(e.getX(), e.getY(), slider.getValue(), slider.getValue());
-                        }
-                        else if(e.isSecondaryButtonDown()){
-                            gc.clearRect(e.getX(), e.getY(), slider.getValue()*2, slider.getValue());
-                        }
+                new EventHandler<MouseEvent>(){
+
+                    @Override
+                    public void handle(MouseEvent event) {
+                        gc.lineTo(event.getX(), event.getY());
+                        gc.stroke();
+                    }
+                });
+
+        surface.addEventHandler(MouseEvent.MOUSE_RELEASED,
+                new EventHandler<MouseEvent>(){
+
+                    @Override
+                    public void handle(MouseEvent event) {
 
                     }
                 });

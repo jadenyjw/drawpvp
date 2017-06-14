@@ -50,8 +50,6 @@ public class Game {
     //Exit the lobby and deny incoming joiners.
     public void startGame(){
         this.gameStarted = true;
-        System.out.println("Game has started.");
-        //lobbyAlerts.display("Start","The game has started");
         listener.sendToAllClients(new Packets.GameStarter());
         for(int x = 0; x < listener.pairs.size(); x++){
             Packets.PlayerUpdate notif = new Packets.PlayerUpdate();
