@@ -29,14 +29,7 @@ public class LobbyController implements Initializable{
     protected JFXListView<String> playersView;
     @FXML
     protected JFXButton startButton;
-    public Notification lobbyAlerts = new Notification();
 
-    public void showMessage(String title, String message){
-        Platform.runLater(new Runnable() {
-            public void run() {
-                lobbyAlerts.display(title,message);
-            }
-        });}
 
 
     ObservableList<String> items = FXCollections.observableArrayList();

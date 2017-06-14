@@ -43,6 +43,14 @@ public class GameController implements Initializable{
     protected int seconds;
     public Notification drawingAlerts = new Notification();
     protected JFXSnackbar bar;
+    public Notification lobbyAlerts = new Notification();
+
+    public void showAlert(String title, String message){
+        Platform.runLater(new Runnable() {
+            public void run() {
+                lobbyAlerts.display(title,message);
+            }
+        });}
 
 
     public void showMessage(String title, String message){
