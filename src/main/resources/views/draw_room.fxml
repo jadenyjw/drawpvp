@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../images/background.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../images/background.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
    <top>
       <HBox alignment="CENTER" prefHeight="57.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -33,15 +33,20 @@
                </padding>
             </VBox>
             <Region prefHeight="57.0" prefWidth="16.0" HBox.hgrow="ALWAYS" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="332.0" text="Drawing Room" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="332.0" text="Drawing Room" textAlignment="CENTER" textOverrun="CLIP">
                <font>
-                  <Font name="Freestyle Script" size="54.0" />
+                  <Font size="43.0" />
                </font></Label>
             <ImageView fitHeight="71.0" fitWidth="82.0">
                <image>
                   <Image url="@../images/drawImage.png" />
                </image>
             </ImageView>
+            <Label fx:id="time" ellipsisString="" prefHeight="29.0" prefWidth="70.0" textOverrun="CLIP">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
             <Region prefHeight="71.0" prefWidth="109.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>

@@ -11,10 +11,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -38,6 +40,7 @@ public class GameController implements Initializable{
     @FXML protected Canvas surface;
     @FXML protected VBox canvasBox;
     @FXML protected JFXSlider slider;
+    @FXML protected Label time;
     protected GraphicsContext gc;
     protected NeuralNet net;
     protected int currentDrawing;
@@ -257,6 +260,12 @@ public class GameController implements Initializable{
                     @Override
                     public void run() {
                         if(currentDrawing != -1) {
+                            Platform.runLater(new Runnable() {
+                                public void run() {
+                                    time.setText(String.valueOf(60 - seconds));
+                                }
+                            });
+
                             if (seconds == 60) {
                                 Main.client.sendCorrectDrawing();
                                 clear();
@@ -264,6 +273,13 @@ public class GameController implements Initializable{
                             } else {
                                 seconds++;
                             }
+                        }
+                        else{
+                            Platform.runLater(new Runnable() {
+                                public void run() {
+                                    time.setText("Done.");
+                                }
+                            });
                         }
                     }
                 }, 0, 1000);

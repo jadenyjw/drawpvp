@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../images/background.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LobbyController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../images/background.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LobbyController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -24,7 +24,7 @@
                </image>
             </ImageView>
             <Region prefHeight="100.0" prefWidth="80.0" HBox.hgrow="ALWAYS" />
-            <Label prefHeight="54.0" prefWidth="146.0" text="Lobby">
+            <Label prefHeight="100.0" prefWidth="212.0" text="Lobby">
                <font>
                   <Font name="Freestyle Script" size="70.0" />
                </font>
@@ -56,7 +56,7 @@
             <Region prefHeight="46.0" prefWidth="39.0" HBox.hgrow="NEVER" />
             <JFXTextField fx:id="chat" onAction="#onEnter" prefHeight="25.0" prefWidth="476.0" promptText="Chat here..." HBox.hgrow="ALWAYS" />
             <Region prefHeight="46.0" prefWidth="47.0" HBox.hgrow="NEVER" />
-            <JFXButton fx:id="startButton" alignment="CENTER" buttonType="RAISED" maxWidth="50.0" minWidth="63.0" onAction="#startGame" prefHeight="35.0" prefWidth="40.0" ripplerFill="#2d8edd" text="Start" textAlignment="CENTER">
+            <JFXButton fx:id="startButton" alignment="CENTER" buttonType="RAISED" maxWidth="82.0" minWidth="63.0" onAction="#startGame" prefHeight="35.0" prefWidth="82.0" ripplerFill="#2d8edd" text="Start" textAlignment="CENTER">
                <padding>
                   <Insets left="10.0" right="20.0" />
                </padding>
