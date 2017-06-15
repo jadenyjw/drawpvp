@@ -24,7 +24,7 @@
                </image>
             </ImageView>
             <Region prefHeight="100.0" prefWidth="80.0" HBox.hgrow="ALWAYS" />
-            <Label prefHeight="100.0" prefWidth="212.0" text="Lobby">
+            <Label prefHeight="100.0" prefWidth="247.0" text="Lobby">
                <font>
                   <Font name="Freestyle Script" size="70.0" />
                </font>
