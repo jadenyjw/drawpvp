@@ -115,6 +115,7 @@ public class GameController implements Initializable{
 
     //Remembers the randomly chosen drawing
     public void setDrawing(int n){
+        seconds = 0;
         currentDrawing = n;
         if(n != -1){
             Platform.runLater(new Runnable() {
@@ -288,7 +289,6 @@ public class GameController implements Initializable{
                             if (seconds == 60) {
                                 Main.client.sendCorrectDrawing();
                                 clear();
-                                seconds = 0;
                             } else {
                                 seconds++;
                             }
