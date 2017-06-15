@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -12,19 +14,39 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../images/background.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HostJoinController">
    <center>
-      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="185.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="39.0" prefWidth="101.0" text="Username">
-               <font>
-                  <Font size="21.0" />
-               </font>
+            <ImageView fitHeight="175.0" fitWidth="203.0">
+               <image>
+                  <Image url="@../images/hostDragon.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="185.0">
+               <children>
+                  <Label alignment="TOP_LEFT" prefHeight="58.0" prefWidth="182.0" text=" Username" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="15.0" top="15.0" />
+                     </padding>
+                  </Label>
+                  <JFXTextField fx:id="username" focusColor="#ff5599" promptText="Your name here" />
+               </children>
                <padding>
-                  <Insets bottom="15.0" top="15.0" />
+                  <Insets left="10.0" right="10.0" />
                </padding>
-            </Label>
-            <JFXTextField fx:id="username" promptText="Your name here" />
+            </VBox>
+            <ImageView fitHeight="174.0" fitWidth="202.0">
+               <image>
+                  <Image url="@../images/hostImage.png" />
+               </image>
+            </ImageView>
          </children>
-      </VBox>
+         <BorderPane.margin>
+            <Insets left="15.0" right="15.0" />
+         </BorderPane.margin>
+      </HBox>
    </center>
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
@@ -35,7 +57,7 @@
                </font>
             </JFXButton>
             <Region prefHeight="200.0" prefWidth="200.0" />
-            <JFXButton contentDisplay="CENTER" onAction="#hostGame" prefHeight="42.0" prefWidth="104.0" ripplerFill="#2ae157" text="Host" textAlignment="CENTER">
+            <JFXButton contentDisplay="CENTER" onAction="#hostGame" prefHeight="42.0" prefWidth="104.0" ripplerFill="#fc6d1b" text="Host" textAlignment="CENTER">
                <font>
                   <Font size="22.0" />
                </font>
@@ -48,10 +70,16 @@
          <children>
             <Label text="You are Hosting">
                <font>
-                  <Font size="28.0" />
+                  <Font name="Freestyle Script" size="55.0" />
                </font>
             </Label>
          </children>
       </HBox>
    </top>
+   <left>
+      <VBox BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <VBox BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>
