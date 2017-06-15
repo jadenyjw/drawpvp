@@ -247,7 +247,10 @@ public class GameController implements Initializable{
                         }
                         //Skip the drawing if d is pressed
                         else if(e.getCode() == KeyCode.D){
-                            Main.client.sendCorrectDrawing();
+                            if(currentDrawing !=-1){
+                                Main.client.sendCorrectDrawing();
+                            }
+
                         }
 
                     }
