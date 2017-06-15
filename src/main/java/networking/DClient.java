@@ -32,6 +32,7 @@ public class DClient {
         client.sendTCP(joinPacket);
     }
 
+    //Asks the server which players are currently connected.
     public void requestPlayers(){
         Packets.RequestPlayers request = new Packets.RequestPlayers();
         client.sendTCP(request);

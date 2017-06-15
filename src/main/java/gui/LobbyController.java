@@ -31,6 +31,7 @@ public class LobbyController implements Initializable{
 
     ObservableList<String> items = FXCollections.observableArrayList();
 
+    //Show the chat message.
     public void displayChatMessage(final String message){
         Platform.runLater(new Runnable() {
             public void run() {
@@ -40,6 +41,7 @@ public class LobbyController implements Initializable{
 
     }
 
+    //Updates the side view with the list of currently connected players.
     public void playersUpdate(final String[] players){
 
       Platform.runLater(new Runnable() {
@@ -87,8 +89,8 @@ public class LobbyController implements Initializable{
         Main.client.startGame();
     }
     @FXML
+    //Type a message into chat.
     public void onEnter(){
-
         if(!(chat.getText().trim().equals(""))){
             Main.client.sendChatMessage(chat.getText());
             Platform.runLater(new Runnable() {
@@ -102,6 +104,8 @@ public class LobbyController implements Initializable{
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //Get the IP address of the host.
         if(Main.isHost){
             try{
                 Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();

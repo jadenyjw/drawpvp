@@ -48,6 +48,7 @@ public class ServerListener extends Listener {
 
     public void received(Connection c, Object o){
 
+        //Receives a request for list of players.
         if(o instanceof Packets.RequestPlayers){
             Packets.PlayerUpdate notif = new Packets.PlayerUpdate();
             String[] players = new String[pairs.size()];
