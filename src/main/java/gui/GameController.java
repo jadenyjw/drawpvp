@@ -150,14 +150,19 @@ public class GameController implements Initializable{
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //Set restrictions for slider
         slider.setMax(10);
         slider.setMin(1);
+
         bar = new JFXSnackbar((Pane)canvasBox.getParent());
+
 
         gc = surface.getGraphicsContext2D();
         surface.widthProperty().bind(canvasBox.widthProperty());
         surface.heightProperty().bind(canvasBox.heightProperty());
 
+        //Add event handlers for drawing
         surface.addEventHandler(MouseEvent.MOUSE_PRESSED,
                 new EventHandler<MouseEvent>(){
 
@@ -193,6 +198,7 @@ public class GameController implements Initializable{
                 });
 
 
+        //Add event handler for keyboard controls.
         surface.getParent().getParent().addEventHandler(KeyEvent.KEY_PRESSED,
                 new EventHandler<KeyEvent>() {
                     public void handle(KeyEvent e) {
@@ -215,6 +221,7 @@ public class GameController implements Initializable{
             e.printStackTrace();
         }
 
+        //This loop schedules a judging of the drawing every 4 seconds.
         new Timer().schedule(
                 new TimerTask() {
                     @Override
@@ -225,6 +232,7 @@ public class GameController implements Initializable{
                     }
                 }, 0, 4000);
 
+        //Time of 60 seconds until the current drawing is automatically skipped.
         new Timer().schedule(
                 new TimerTask() {
 

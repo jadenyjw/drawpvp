@@ -25,6 +25,7 @@ public class HostJoinController {
     @FXML
     private JFXButton backButton;
 
+    
     @FXML
     protected void hostGame() throws IOException{
         if(username.getText().length() > 0 && username.getText().length() <= 20) {

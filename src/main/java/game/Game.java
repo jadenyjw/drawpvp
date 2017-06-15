@@ -129,6 +129,7 @@ public class Game {
         return gameStarted;
     }
 
+
     public void generateDrawings(){
         Random rand = new Random();
         //Generates the drawings for the players.
