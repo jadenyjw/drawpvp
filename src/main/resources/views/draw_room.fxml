@@ -52,7 +52,14 @@
       </HBox>
    </top>
    <bottom>
-      <HBox prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="drawing" prefHeight="18.0" prefWidth="180.0" text="Drawing">
+               <HBox.margin>
+                  <Insets left="12.0" top="12.0" />
+               </HBox.margin>
+            </Label>
+         </children></HBox>
    </bottom>
    <right>
       <JFXListView fx:id="playersView" prefHeight="261.0" prefWidth="123.0" showTooltip="true" BorderPane.alignment="CENTER">

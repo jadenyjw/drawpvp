@@ -31,6 +31,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.deeplearning4j.nn.modelimport.keras.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationException;
+import utilities.DataManipulation;
 
 /**
  * Created by jaden on 5/10/17.
@@ -41,6 +42,8 @@ public class GameController implements Initializable{
     @FXML protected VBox canvasBox;
     @FXML protected JFXSlider slider;
     @FXML protected Label time;
+    @FXML protected Label drawing;
+
     protected GraphicsContext gc;
     protected NeuralNet net;
     protected int currentDrawing;
@@ -113,6 +116,21 @@ public class GameController implements Initializable{
     //Remembers the randomly chosen drawing
     public void setDrawing(int n){
         currentDrawing = n;
+        if(n != -1){
+            Platform.runLater(new Runnable() {
+                public void run() {
+                    drawing.setText(DataManipulation.idToString(n));
+                }
+            });
+
+        }
+        else{
+            Platform.runLater(new Runnable() {
+                public void run() {
+                    drawing.setText("Completed!");
+                }
+            });
+        }
     }
 
     //Update the listView if someone leaves
@@ -220,12 +238,13 @@ public class GameController implements Initializable{
         //Key is pressed
         surface.getParent().getParent().addEventHandler(KeyEvent.KEY_PRESSED,
                 new EventHandler<KeyEvent>() {
-                    //if the c button is pressed, clear the canvas
+
                     public void handle(KeyEvent e) {
+                        //If the c button is pressed, clear the canvas
                         if(e.getCode() == KeyCode.C) {
                             clear();
                         }
-                        //skip the drawing if d is pressed
+                        //Skip the drawing if d is pressed
                         else if(e.getCode() == KeyCode.D){
                             Main.client.sendCorrectDrawing();
                         }
@@ -277,7 +296,7 @@ public class GameController implements Initializable{
                         else{
                             Platform.runLater(new Runnable() {
                                 public void run() {
-                                    time.setText("Done.");
+                                    time.setText("");
                                 }
                             });
                         }
