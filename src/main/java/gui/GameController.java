@@ -34,7 +34,7 @@ import org.deeplearning4j.nn.modelimport.keras.UnsupportedKerasConfigurationExce
  * Created by jaden on 5/10/17.
  */
 public class GameController implements Initializable{
-
+    //Declare variables
     @FXML protected Canvas surface;
     @FXML protected VBox canvasBox;
     @FXML protected JFXSlider slider;
@@ -45,6 +45,7 @@ public class GameController implements Initializable{
     protected JFXSnackbar bar;
     public Notification gameAlerts = new Notification();
 
+    //showAlert displays pop up window
     public void showAlert(String[] message){
         Platform.runLater(new Runnable() {
             public void run() {
@@ -52,7 +53,7 @@ public class GameController implements Initializable{
             }
         });}
 
-
+    //showMessage displays pop up message that disappears after 5s
     public void showMessage(String title, String message){
         Platform.runLater(new Runnable() {
         public void run() {
@@ -61,7 +62,7 @@ public class GameController implements Initializable{
 
         }
     });}
-
+    //Erase the canvas
     @FXML
     public void clear(){
         gc.clearRect(0, 0, surface.getWidth(), surface.getHeight());
@@ -74,9 +75,10 @@ public class GameController implements Initializable{
     @FXML
     protected JFXListView<String> playersView;
 
-
+    //items ArrayList keeps track of players
     ObservableList<String> items = FXCollections.observableArrayList();
 
+    //Chat method
     public void displayChatMessage(final String message){
         Platform.runLater(new Runnable() {
             public void run() {
@@ -105,10 +107,12 @@ public class GameController implements Initializable{
 
     }
 
+    //Remembers the randomly chosen drawing
     public void setDrawing(int n){
         currentDrawing = n;
     }
 
+    //Update the listView if someone leaves
     public void playersUpdate(final String[] players){
 
         Platform.runLater(new Runnable() {
@@ -122,6 +126,7 @@ public class GameController implements Initializable{
         });
     }
 
+    //Resizes the image so the AI can judge it
     private BufferedImage resize(BufferedImage img, int newW, int newH) {
         Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
         BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_RGB);
@@ -133,6 +138,7 @@ public class GameController implements Initializable{
         return dimg;
     }
 
+    //Return to lobby after game is finished
     public void goBackToLobby(){
         try{
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/lobby.fxml"));
@@ -148,7 +154,7 @@ public class GameController implements Initializable{
 
     }
 
-
+    //Create the drawing room
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Set restrictions for slider
@@ -157,8 +163,9 @@ public class GameController implements Initializable{
 
         bar = new JFXSnackbar((Pane)canvasBox.getParent());
 
-
+        //Use GraphicsContext to draw on canvas
         gc = surface.getGraphicsContext2D();
+        //Set the size of the canvas to the VBox it is in
         surface.widthProperty().bind(canvasBox.widthProperty());
         surface.heightProperty().bind(canvasBox.heightProperty());
 
@@ -168,43 +175,54 @@ public class GameController implements Initializable{
 
                     @Override
                     public void handle(MouseEvent event) {
+                        //Left button clicked
                         if(event.isPrimaryButtonDown()){
                             gc.setLineWidth(slider.getValue());
+                            //Start the stroke
                             gc.beginPath();
+                            //Move to the mouse position
                             gc.moveTo(event.getX(), event.getY());
+                            //Draw the path
                             gc.stroke();
                         }
+                        //Right mouse button
                         else if(event.isSecondaryButtonDown()){
-                            gc.clearRect(event.getX(), event.getY(), slider.getValue(), slider.getValue());
+                            //Erase the lines
+                            gc.clearRect(event.getX(), event.getY(), slider.getValue()*5, slider.getValue()*5);
                         }
 
 
                     }
                 });
-
+        //Mouse is moving and button is pressed
         surface.addEventHandler(MouseEvent.MOUSE_DRAGGED,
                 new EventHandler<MouseEvent>(){
 
                     @Override
+                    //Continue the line if the left button is pressed
                     public void handle(MouseEvent event) {
                         if(event.isPrimaryButtonDown()) {
                             gc.lineTo(event.getX(), event.getY());
                             gc.stroke();
                         }
+                        //Erase if the right button is pressed
                         else if (event.isSecondaryButtonDown()){
-                            gc.clearRect(event.getX(), event.getY(), slider.getValue(), slider.getValue());
+                            gc.clearRect(event.getX(), event.getY(), slider.getValue()*5, slider.getValue()*5);
                         }
                     }
                 });
 
 
         //Add event handler for keyboard controls.
+        //Key is pressed
         surface.getParent().getParent().addEventHandler(KeyEvent.KEY_PRESSED,
                 new EventHandler<KeyEvent>() {
+                    //if the c button is pressed, clear the canvas
                     public void handle(KeyEvent e) {
                         if(e.getCode() == KeyCode.C) {
                             clear();
                         }
+                        //skip the drawing if d is pressed
                         else if(e.getCode() == KeyCode.D){
                             Main.client.sendCorrectDrawing();
                         }
