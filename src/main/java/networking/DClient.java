@@ -17,7 +17,7 @@ public class DClient {
             client = new Client();
             client.start();
             registerPackets();
-            client.connect(5000, ip, port);
+            client.connect(50000, ip, port);
             client.addListener(new ClientListener());
         }
         catch(IOException e){
